@@ -879,6 +879,101 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
 .value-card h4 { margin-bottom: 0.5rem; }
 .value-card p { font-size: 0.88rem; color: var(--clr-text-muted); }
 
+/* ─── Certification Cards ─── */
+.cert-card {
+  position: relative;
+  overflow: hidden;
+  padding-top: 2.25rem;
+}
+.cert-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--clr-primary-dark), var(--clr-secondary));
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.value-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 88px;
+  margin-bottom: 1rem;
+}
+.value-logo img {
+  max-height: 80px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.08));
+  transition: transform 0.35s ease;
+}
+.cert-card:hover .value-logo img { transform: scale(1.06); }
+
+.cert-year-pill {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clr-secondary);
+  background: rgba(45,200,160,0.1);
+  border: 1px solid rgba(45,200,160,0.28);
+  border-radius: 20px;
+  padding: 0.22rem 0.75rem;
+  margin-bottom: 0.9rem;
+}
+.cert-year-pill--intl {
+  color: var(--clr-primary);
+  background: rgba(13,74,94,0.07);
+  border-color: rgba(13,74,94,0.2);
+}
+.cert-issuer {
+  font-size: 0.72rem;
+  color: var(--clr-text-muted);
+  font-style: italic;
+  margin-top: 0.9rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--clr-border);
+  letter-spacing: 0.02em;
+}
+
+/* International logos 2×2 grid */
+.intl-logos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+  height: 88px;
+  align-content: center;
+  margin-bottom: 1rem;
+}
+.mini-logo {
+  background: var(--clr-light-bg);
+  border: 1px solid var(--clr-border);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.5rem;
+  transition: var(--transition);
+}
+.mini-logo img {
+  height: 20px;
+  width: auto;
+  max-width: 72px;
+  object-fit: contain;
+  filter: grayscale(100%) opacity(0.55);
+  transition: filter 0.3s ease;
+}
+.cert-card:hover .mini-logo img {
+  filter: grayscale(0%) opacity(1);
+}
+.cert-card:hover .mini-logo {
+  border-color: rgba(45,200,160,0.3);
+  background: var(--clr-white);
+}
+
 /* ─── Team Cards ─── */
 .team-grid { display: grid; gap: 2rem; margin-top: 3rem; }
 @media (min-width: 768px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
