@@ -203,7 +203,7 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
 }
 
 .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
-.nav-logo img { height: 44px; width: auto; filter: brightness(0) invert(1); }
+.nav-logo img { height: 44px; width: auto; object-fit: contain; }
 .nav-logo-text { display: flex; flex-direction: column; }
 .nav-logo-name {
   font-family: var(--font-heading);
@@ -285,6 +285,11 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
 .mobile-nav a.active { color: var(--clr-secondary); }
 .mobile-nav .btn { margin-top: 2rem; width: 100%; justify-content: center; font-size: 1rem; }
 
+@media (max-width: 767px) {
+  .nav-inner { gap: 0.75rem; }
+  .nav-lang { margin-left: auto; gap: 0; }
+  .nav-logo img { height: 36px; max-width: 130px; }
+}
 @media (min-width: 768px) {
   .nav-links { display: flex; }
   .nav-hamburger { display: none; }
@@ -972,6 +977,69 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
 .cert-card:hover .mini-logo {
   border-color: rgba(45,200,160,0.3);
   background: var(--clr-white);
+}
+
+/* ─── Story Map Floating Row ─── */
+.story-map-row {
+  display: grid;
+  gap: 3.5rem;
+  align-items: center;
+  margin-top: 4rem;
+  padding-top: 3.5rem;
+  border-top: 1px solid var(--clr-border);
+}
+@media (min-width: 768px) {
+  .story-map-row { grid-template-columns: 1fr 1fr; }
+}
+.story-map-text { }
+.story-map-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.story-stat {
+  display: flex;
+  flex-direction: column;
+}
+.story-stat-num {
+  font-family: var(--font-heading);
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--clr-secondary);
+  line-height: 1;
+}
+.story-stat-label {
+  font-size: 0.72rem;
+  color: var(--clr-text-muted);
+  margin-top: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Map visual with professional effects */
+.story-map-visual {
+  position: relative;
+}
+.story-map-visual::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  background: radial-gradient(ellipse at center, rgba(45,200,160,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.story-map-visual img {
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 12px 32px rgba(13,74,48,0.18)) drop-shadow(0 2px 8px rgba(0,0,0,0.08));
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+.story-map-visual img:hover {
+  transform: scale(1.025) translateY(-4px);
+  filter: drop-shadow(0 20px 40px rgba(13,74,48,0.22)) drop-shadow(0 4px 12px rgba(0,0,0,0.1));
 }
 
 /* ─── Team Cards ─── */
