@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -247,24 +248,26 @@
         <h2 class="section-title" data-i18n="home.partners.title">Trusted by International Financiers</h2>
         <p class="partners-desc section-desc" data-i18n="home.partners.desc">We have successfully delivered projects financed by the world's leading development finance institutions and international agencies.</p>
       </div>
-      <div class="partners-row reveal reveal-delay-1">
-        <div class="partner-logo">
-          <img src="International Finaciers/WorldBank.svg" alt="World Bank" />
-        </div>
-        <div class="partner-logo">
-          <img src="International Finaciers/AfricanDevelopmentBank.svg" alt="African Development Bank" />
-        </div>
-        <div class="partner-logo">
-          <img src="International Finaciers/JICA.svg" alt="JICA — Japan International Cooperation Agency" />
-        </div>
-        <div class="partner-logo">
-          <img src="International Finaciers/EuropeanUnion.svg" alt="European Union" />
-        </div>
-        <div class="partner-logo">
-          <img src="International Finaciers/MCCMozambique.svg" alt="MCC Mozambique" />
-        </div>
-        <div class="partner-logo">
-          <img src="International Finaciers/IDA.svg" alt="IDA — International Development Association" />
+      <div class="swiper partners-swiper reveal reveal-delay-1">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide partner-logo">
+            <img src="International Finaciers/WorldBank.svg" alt="World Bank" />
+          </div>
+          <div class="swiper-slide partner-logo">
+            <img src="International Finaciers/AfricanDevelopmentBank.svg" alt="African Development Bank" />
+          </div>
+          <div class="swiper-slide partner-logo">
+            <img src="International Finaciers/JICA.svg" alt="JICA — Japan International Cooperation Agency" />
+          </div>
+          <div class="swiper-slide partner-logo">
+            <img src="International Finaciers/EuropeanUnion.svg" alt="European Union" />
+          </div>
+          <div class="swiper-slide partner-logo">
+            <img src="International Finaciers/MCCMozambique.svg" alt="MCC Mozambique" />
+          </div>
+          <div class="swiper-slide partner-logo">
+            <img src="International Finaciers/IDA.svg" alt="IDA — International Development Association" />
+          </div>
         </div>
       </div>
     </div>
@@ -404,5 +407,24 @@
 
   <script src="js/main.js"></script>
   <script src="js/i18n.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    new Swiper('.partners-swiper', {
+      loop: true,
+      speed: 650,
+      spaceBetween: 20,
+      autoplay: {
+        delay: 2400,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      breakpoints: {
+        0:    { slidesPerView: 2 },
+        480:  { slidesPerView: 3 },
+        768:  { slidesPerView: 4 },
+        1024: { slidesPerView: 5 },
+      }
+    });
+  </script>
 </body>
 </html>
