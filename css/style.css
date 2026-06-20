@@ -507,29 +507,6 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
   margin-bottom: 3.5rem;
 }
 
-.hero-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  border-top: 1px solid rgba(255,255,255,0.15);
-  padding-top: 2rem;
-}
-.hero-stat-item { display: flex; flex-direction: column; }
-.hero-stat-num {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--clr-secondary);
-  line-height: 1;
-}
-.hero-stat-label {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.65);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  margin-top: 0.25rem;
-}
-
 /* ─── Stats Bar ─── */
 .stats-bar {
   background: var(--clr-primary-dark);
