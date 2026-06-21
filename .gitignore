@@ -1,1 +1,9 @@
+# Claude Code memory
 .claude/
+
+# Development / generation scripts (kept in scripts/ but not deployed)
+# Uncomment the line below if you want to exclude them from the repo entirely:
+# scripts/
+
+# Office documents — not web assets
+Company Profile/

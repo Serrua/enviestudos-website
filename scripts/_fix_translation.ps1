@@ -1,9 +1,31 @@
+$dir = "C:\Users\Dell\Documents\EnviEstudos"
+$enc = New-Object System.Text.UTF8Encoding($false)
+function W($name, $txt) { [System.IO.File]::WriteAllText("$dir\$name", $txt, $enc); Write-Host "OK: $name" }
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 1.  projects.html — wrap "View Project" text in translatable span
+# ─────────────────────────────────────────────────────────────────────────────
+$pPath = "$dir\projects.html"
+$pTxt  = [System.IO.File]::ReadAllText($pPath)
+$before = ([regex]::Matches($pTxt, 'data-i18n="proj\.detail\.view"')).Count
+$pTxt  = $pTxt.Replace(
+    '>View Project <svg',
+    '><span data-i18n="proj.detail.view">View Project</span> <svg'
+)
+$after = ([regex]::Matches($pTxt, 'data-i18n="proj\.detail\.view"')).Count
+[System.IO.File]::WriteAllText($pPath, $pTxt, $enc)
+Write-Host "projects.html: $before → $after spans added"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 2.  services.html — full bilingual rewrite
+# ─────────────────────────────────────────────────────────────────────────────
+$svc = @'
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Enviestudos services â€” ESIA, Environmental Audits, Supervision &amp; Monitoring, Resettlement Plans (RAP), ESMP, and Training for projects across Mozambique." />
+  <meta name="description" content="Enviestudos services — ESIA, Environmental Audits, Supervision &amp; Monitoring, Resettlement Plans (RAP), ESMP, and Training for projects across Mozambique." />
   <title>Services | Enviestudos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,7 +37,7 @@
   <nav class="navbar solid" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo" aria-label="Home">
-        <img src="assets/logo/logo.svg" alt="Enviestudos Logo" />
+        <img src="logo/logo.svg" alt="Enviestudos Logo" />
         <div class="nav-logo-text">
           <span class="nav-logo-name">ENVIESTUDOS</span>
           <span class="nav-logo-tagline" data-i18n="nav.tagline">Consultoria Ambiental &amp; Servi&ccedil;os</span>
@@ -64,7 +86,7 @@
     </div>
   </header>
 
-  <!-- â•â•â• SERVICES OVERVIEW GRID â•â•â• -->
+  <!-- ═══ SERVICES OVERVIEW GRID ═══ -->
   <section class="section-pad" style="background:var(--clr-white);">
     <div class="container">
       <div class="text-center reveal">
@@ -157,7 +179,7 @@
     </div>
   </section>
 
-  <!-- â•â•â• PROCESS â•â•â• -->
+  <!-- ═══ PROCESS ═══ -->
   <section class="process-section section-pad">
     <div class="container">
       <div class="text-center reveal">
@@ -190,7 +212,7 @@
     </div>
   </section>
 
-  <!-- â•â•â• SECTORS â•â•â• -->
+  <!-- ═══ SECTORS ═══ -->
   <section class="section-pad" style="background:var(--clr-white);">
     <div class="container">
       <div class="text-center reveal">
@@ -232,7 +254,7 @@
     </div>
   </section>
 
-  <!-- â•â•â• TRACK RECORD â•â•â• -->
+  <!-- ═══ TRACK RECORD ═══ -->
   <section class="section-pad" style="background:var(--clr-light-bg);">
     <div class="container text-center reveal">
       <div class="section-label"><span class="lang-en">Track Record</span><span class="lang-pt">Hist&oacute;rial</span></div>
@@ -242,7 +264,7 @@
     </div>
   </section>
 
-  <!-- â•â•â• CTA â•â•â• -->
+  <!-- ═══ CTA ═══ -->
   <section class="cta-section section-pad">
     <div class="container">
       <div class="cta-inner reveal">
@@ -262,7 +284,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="nav-logo">
-            <img src="assets/logo/logo.svg" alt="Enviestudos Logo" style="height:40px;" />
+            <img src="logo/logo.svg" alt="Enviestudos Logo" style="height:40px;" />
             <div class="nav-logo-text">
               <span class="nav-logo-name">ENVIESTUDOS</span>
               <span class="nav-logo-tagline" data-i18n="nav.tagline">Consultoria Ambiental &amp; Servi&ccedil;os</span>
@@ -323,3 +345,6 @@
   <script src="js/i18n.js"></script>
 </body>
 </html>
+'@
+W 'services.html' $svc
+Write-Host "Done."

@@ -1,0 +1,468 @@
+
+$dir = "C:\Users\Dell\Documents\EnviEstudos"
+$enc = New-Object System.Text.UTF8Encoding($false)
+function W($name, $html) { [System.IO.File]::WriteAllText("$dir\$name", $html, $enc); Write-Host "OK: $name" }
+
+# ─── SHARED SNIPPETS ──────────────────────────────────────────────────────────
+$NAV_PROJ = '<nav class="navbar solid" role="navigation" aria-label="Main navigation"><div class="nav-inner"><a href="index.html" class="nav-logo" aria-label="Home"><img src="logo/logo.svg" alt="Enviestudos Logo" /><div class="nav-logo-text"><span class="nav-logo-name">ENVIESTUDOS</span><span class="nav-logo-tagline" data-i18n="nav.tagline">Consultoria Ambiental &amp; Servi&ccedil;os</span></div></a><ul class="nav-links" role="list"><li><a href="index.html" data-i18n="nav.home">Home</a></li><li><a href="about.html" data-i18n="nav.about">About</a></li><li><a href="services.html" data-i18n="nav.services">Services</a></li><li><a href="projects.html" class="active" data-i18n="nav.projects">Projects</a></li><li><a href="contact.html" data-i18n="nav.contact">Contact</a></li></ul><div class="nav-lang"><a href="contact.html" class="btn btn-primary nav-cta" data-i18n="nav.quote">Get a Quote</a><button class="lang-toggle" aria-label="Switch language" data-i18n-aria="lang.aria"><span class="lang-flag">&#127760;</span><span data-i18n="lang.switch">PT</span></button></div><button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button></div></nav><div class="mobile-nav" role="dialog" aria-label="Mobile navigation"><a href="index.html" data-i18n="nav.home">Home</a><a href="about.html" data-i18n="nav.about">About</a><a href="services.html" data-i18n="nav.services">Services</a><a href="projects.html" class="active" data-i18n="nav.projects">Projects</a><a href="contact.html" data-i18n="nav.contact">Contact</a><a href="contact.html" class="btn btn-primary" data-i18n="nav.consultation">Get a Consultation</a><button class="lang-toggle" data-i18n-aria="lang.aria"><span class="lang-flag">&#127760;</span><span data-i18n="lang.switch">PT</span></button></div>'
+
+$FOOT = '<footer role="contentinfo"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="index.html" class="nav-logo"><img src="logo/logo.svg" alt="Enviestudos Logo" style="height:40px;" /><div class="nav-logo-text"><span class="nav-logo-name">ENVIESTUDOS</span><span class="nav-logo-tagline" data-i18n="nav.tagline">Consultoria Ambiental &amp; Servi&ccedil;os</span></div></a><p data-i18n="footer.brand.desc">Pragmatic environmental solutions for sustainable development in Mozambique.</p></div><div class="footer-col"><h5 data-i18n="footer.col.services">Services</h5><ul class="footer-links"><li><a href="service-esia.html" data-i18n="footer.link.esia">Environmental Impact Assessment</a></li><li><a href="service-audit.html" data-i18n="footer.link.audits">Environmental Audits</a></li><li><a href="service-monitoring.html" data-i18n="footer.link.supervision">Supervision</a></li><li><a href="service-rap.html" data-i18n="footer.link.rap">Resettlement Plans</a></li></ul></div><div class="footer-col"><h5 data-i18n="footer.col.company">Company</h5><ul class="footer-links"><li><a href="about.html" data-i18n="footer.link.about">About Us</a></li><li><a href="projects.html" data-i18n="footer.link.projects">Projects</a></li><li><a href="contact.html" data-i18n="footer.link.contact">Contact</a></li></ul></div><div class="footer-col"><h5 data-i18n="footer.col.contact">Contact</h5><div class="footer-contact-items"><div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Rua Viana da Mota NR.72, Maputo</div><div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>+258 82/84 3289330</div></div></div></div><div class="footer-bottom"><p class="footer-copy"><span data-i18n="footer.copy">&copy; 2025 Enviestudos, Consultoria Ambiental &amp; Servi&ccedil;os, Lda.</span></p><div class="footer-legal"><a href="#" data-i18n="footer.privacy">Privacy Policy</a><a href="#" data-i18n="footer.terms">Terms of Use</a></div></div></div></footer><div class="whatsapp-float" aria-label="Chat on WhatsApp"><span class="whatsapp-tooltip" data-i18n="wa.tooltip">Chat with us</span><a href="#" class="whatsapp-float-btn" data-wa data-i18n-aria="wa.chat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div><button class="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 15l7-7 7 7" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></button><script src="js/main.js"></script><script src="js/i18n.js"></script>'
+
+$HEAD = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />'
+$HEADEND = '<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" /><link rel="stylesheet" href="css/style.css" /></head><body>'
+
+$SVGEIA = '<svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>'
+$SVGSUP = '<svg viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>'
+$SVGRAP = '<svg viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>'
+
+# ─────────────────────────────────────────────────────────────────────────────
+# project-chongoene.html  (Project 1)
+# ─────────────────────────────────────────────────────────────────────────────
+$chon = @'
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="ESIA for Port Infrastructure Construction in Chongoene, Gaza Province — Enviestudos delivered the full environmental study including scoping, public consultations, and ESMP for Dingsheng Minerais." />
+<title>Port Infrastructure ESIA, Chongoene | Enviestudos Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" /></head><body>
+'@
+
+$chon += $NAV_PROJ
+
+$chon += @'
+
+<header class="page-hero"><div class="container"><div class="page-hero-content">
+  <div class="page-hero-label"><span class="lang-en">Infrastructure &bull; Gaza Province</span><span class="lang-pt">Infraestrutura &bull; Prov&iacute;ncia de Gaza</span></div>
+  <h1 data-i18n="proj.p1.title"></h1>
+  <div class="proj-hero-meta">
+    <div class="proj-hero-meta-item"><span class="proj-hero-meta-label" data-i18n="proj.detail.year">Year</span><span class="proj-hero-meta-value">2022</span></div>
+    <div class="proj-hero-meta-item"><span class="proj-hero-meta-label" data-i18n="proj.detail.province">Province</span><span class="proj-hero-meta-value">Gaza</span></div>
+    <div class="proj-hero-meta-item"><span class="proj-hero-meta-label" data-i18n="proj.detail.client">Client</span><span class="proj-hero-meta-value">Dingsheng Minerais, SA</span></div>
+    <div class="proj-hero-meta-item"><span class="proj-hero-meta-label" data-i18n="proj.detail.funder">Funder</span><span class="proj-hero-meta-value">Chinese Bank</span></div>
+  </div>
+  <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-top:1.5rem;">
+    <a href="index.html" data-i18n="bc.home">Home</a><span>&rsaquo;</span>
+    <a href="projects.html" data-i18n="nav.projects">Projects</a><span>&rsaquo;</span>
+    <span>Chongoene Port ESIA</span>
+  </nav>
+</div></div></header>
+
+<section class="section-pad" style="background:var(--clr-white);"><div class="container"><div class="detail-layout">
+<div class="detail-body reveal">
+  <h2 data-i18n="proj.detail.overview">Project Overview</h2>
+  <div class="lang-en">
+    <p>Enviestudos was commissioned to deliver a full Environmental and Social Impact Assessment (ESIA) for the construction of new port infrastructure at Chongoene, Gaza Province. The project, financed by a Chinese Bank on behalf of Dingsheng Minerais, SA, required a comprehensive study meeting both Mozambican regulatory requirements and international funder safeguard standards.</p>
+    <p>The Chongoene port development represented a significant infrastructure investment in the southern Mozambique coast, with potential environmental and social sensitivities related to coastal ecosystems, marine habitats, and local fishing communities.</p>
+  </div>
+  <div class="lang-pt">
+    <p>A Enviestudos foi contratada para realizar um Estudo de Impacto Ambiental e Social (ESIA) completo para a constru&ccedil;&atilde;o de nova infraestrutura portu&aacute;ria em Chongoene, Prov&iacute;ncia de Gaza. O projecto, financiado por um Banco Chin&ecirc;s em nome da Dingsheng Minerais, SA, exigiu um estudo abrangente cumprindo tanto os requisitos regulat&oacute;rios mo&ccedil;ambicanos como as normas de salvaguarda do financiador internacional.</p>
+    <p>O desenvolvimento do porto de Chongoene representou um investimento significativo em infraestrutura na costa sul de Mo&ccedil;ambique, com potenciais sensibilidades ambientais e sociais relacionadas com os ecossistemas costeiros, habitats marinhos e comunidades piscatoras locais.</p>
+  </div>
+
+  <h2 data-i18n="proj.detail.scope">Scope of Work</h2>
+  <div class="lang-en"><ul>
+    <li>Project categorisation and submission of the Instruction Process to ANAMA</li>
+    <li>Pre-feasibility Environmental Scoping Report identifying key environmental sensitivities</li>
+    <li>Terms of Reference (ToR) preparation and regulatory submission</li>
+    <li>Baseline surveys: coastal ecology, marine environment, water quality, socioeconomics</li>
+    <li>Community and stakeholder public consultation meetings in Gaza Province</li>
+    <li>Impact identification, prediction, and significance evaluation for all project phases</li>
+    <li>Preparation of the full ESIA Report</li>
+    <li>Integrated Environmental and Social Management Plan (ESMP)</li>
+    <li>Regulatory review support and follow-up</li>
+  </ul></div>
+  <div class="lang-pt"><ul>
+    <li>Categoriza&ccedil;&atilde;o do projecto e submiss&atilde;o do Processo de Instru&ccedil;&atilde;o ao ANAMA</li>
+    <li>Relat&oacute;rio de Delimita&ccedil;&atilde;o Ambiental de Pr&eacute;-viabilidade identificando as principais sensibilidades ambientais</li>
+    <li>Elabora&ccedil;&atilde;o dos Termos de Refer&ecirc;ncia (ToR) e submiss&atilde;o regulat&oacute;ria</li>
+    <li>Levantamentos de base: ecologia costeira, ambiente marinho, qualidade da &aacute;gua, socioecon&oacute;mica</li>
+    <li>Reuni&otilde;es de consulta p&uacute;blica com a comunidade e partes interessadas na Prov&iacute;ncia de Gaza</li>
+    <li>Identifica&ccedil;&atilde;o, previs&atilde;o e avalia&ccedil;&atilde;o da signific&acirc;ncia dos impactos para todas as fases do projecto</li>
+    <li>Elabora&ccedil;&atilde;o do Relat&oacute;rio Final de ESIA</li>
+    <li>Plano de Gest&atilde;o Ambiental e Social (PGAS) integrado</li>
+    <li>Apoio na revis&atilde;o regulat&oacute;ria e acompanhamento</li>
+  </ul></div>
+
+  <h2 data-i18n="proj.detail.enviro">Environmental Considerations</h2>
+  <div class="lang-en"><ul>
+    <li><strong>Coastal &amp; Marine Ecology:</strong> Baseline characterisation of mangrove habitats, intertidal zones, and nearshore marine ecosystems potentially affected by port construction.</li>
+    <li><strong>Water Quality:</strong> Assessment of construction-phase impacts on coastal water quality, including sediment disturbance and potential contamination from port operations.</li>
+    <li><strong>Fishing Communities:</strong> Socioeconomic assessment of local fishing communities, evaluation of displacement of fishing activities, and development of livelihood restoration provisions.</li>
+    <li><strong>Air &amp; Noise:</strong> Assessment of construction noise and dust impacts on nearby residential areas.</li>
+    <li><strong>Occupational Health &amp; Safety:</strong> EHS risks associated with marine construction works and port operations.</li>
+  </ul></div>
+  <div class="lang-pt"><ul>
+    <li><strong>Ecologia Costeira e Marinha:</strong> Caracteriza&ccedil;&atilde;o de base dos habitats de mangal, zonas intertidais e ecossistemas marinhos costeiros potencialmente afectados pela constru&ccedil;&atilde;o do porto.</li>
+    <li><strong>Qualidade da &Aacute;gua:</strong> Avalia&ccedil;&atilde;o dos impactos da fase de constru&ccedil;&atilde;o na qualidade da &aacute;gua costeira, incluindo perturba&ccedil;&atilde;o de sedimentos e poss&iacute;vel contamina&ccedil;&atilde;o das opera&ccedil;&otilde;es portu&aacute;rias.</li>
+    <li><strong>Comunidades Piscatoras:</strong> Avalia&ccedil;&atilde;o socioecon&oacute;mica das comunidades piscatoras locais, avalia&ccedil;&atilde;o do deslocamento das actividades de pesca e desenvolvimento de disposi&ccedil;&otilde;es de restauro de meios de subsist&ecirc;ncia.</li>
+    <li><strong>Ar e Ru&iacute;do:</strong> Avalia&ccedil;&atilde;o dos impactos de ru&iacute;do e p&oacute; da constru&ccedil;&atilde;o nas &aacute;reas residenciais pr&oacute;ximas.</li>
+    <li><strong>Sa&uacute;de e Seguran&ccedil;a Ocupacional:</strong> Riscos de HSA associados &agrave;s obras de constru&ccedil;&atilde;o marinha e opera&ccedil;&otilde;es portu&aacute;rias.</li>
+  </ul></div>
+
+  <h2 data-i18n="proj.detail.results">Results &amp; Impact</h2>
+  <div class="lang-en"><p>The completed ESIA provided Dingsheng Minerais with the environmental documentation required to advance the project through the Mozambican licensing process and satisfy the Chinese Bank&rsquo;s environmental safeguard requirements. The integrated ESMP delivered a practical, implementable framework for managing environmental and social risks throughout the construction and operational phases of the port.</p></div>
+  <div class="lang-pt"><p>O ESIA conclu&iacute;do forneceu &agrave; Dingsheng Minerais a documenta&ccedil;&atilde;o ambiental necess&aacute;ria para avan&ccedil;ar o projecto atrav&eacute;s do processo de licenciamento mo&ccedil;ambicano e satisfazer os requisitos de salvaguarda ambiental do Banco Chin&ecirc;s. O PGAS integrado forneceu um quadro pr&aacute;tico e implement&aacute;vel para gerir os riscos ambientais e sociais durante as fases de constru&ccedil;&atilde;o e opera&ccedil;&atilde;o do porto.</p></div>
+
+  <div class="tags-row" style="margin-top:1.5rem;">
+    <span class="project-tag">ESIA</span><span class="project-tag">ESMP</span><span class="project-tag">Port Infrastructure</span><span class="project-tag">Coastal Environment</span><span class="project-tag">Decreto 54/2015</span><span class="project-tag">Gaza Province</span>
+  </div>
+</div>
+
+<aside class="detail-sidebar reveal reveal-delay-2">
+  <div class="sidebar-card">
+    <div class="sidebar-card-title" data-i18n="proj.detail.details">Project Details</div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.sector">Sector</span><span class="sidebar-row-value">Port &amp; Infrastructure</span></div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.year">Year</span><span class="sidebar-row-value">2022</span></div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.province">Province</span><span class="sidebar-row-value">Gaza</span></div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.client">Client</span><span class="sidebar-row-value">Dingsheng Minerais, SA</span></div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.funder">Funder</span><span class="sidebar-row-value">Chinese Bank</span></div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.svc-del">Services Delivered</span><span class="sidebar-row-value">ESIA &bull; Scoping Report &bull; ESMP &bull; Public Consultations</span></div>
+  </div>
+  <div class="sidebar-card">
+    <div class="sidebar-card-title" data-i18n="proj.detail.svc-links">Related Services</div>
+    <div class="sidebar-links">
+      <a href="service-esia.html" class="sidebar-link">__SVGEIA__ESIA Services</a>
+      <a href="service-monitoring.html" class="sidebar-link">__SVGSUP__Environmental Supervision</a>
+    </div>
+  </div>
+</aside>
+</div></div></section>
+
+<section class="section-pad" style="background:var(--clr-light-bg);"><div class="container">
+  <div class="text-center reveal">
+    <div class="section-label" data-i18n="proj.detail.more">More Projects</div>
+    <h2 class="section-title" data-i18n="proj.detail.related">Related Case Studies</h2>
+  </div>
+  <div class="related-grid" style="margin-top:2rem;">
+    <a href="project-lurio.html" class="related-card reveal reveal-delay-1">
+      <span class="related-card-label">Roads &amp; Bridges &bull; 2021&ndash;2022</span>
+      <h4>ESIA &mdash; Bridge over L&uacute;rio River</h4>
+      <p>Full ESIA for cross-province bridge connecting Niassa and Nampula provinces, financed by Chinese Bank.</p>
+      <span class="related-card-arrow" data-i18n="proj.detail.view">View Project &rarr;</span>
+    </a>
+    <a href="project-beira.html" class="related-card reveal reveal-delay-2">
+      <span class="related-card-label">Water &bull; World Bank &bull; 2021&ndash;2022</span>
+      <h4>ARAP &mdash; Distribution Center, Beira (FIPAG WASIS II)</h4>
+      <p>ARAP, GRM design, and GBV/SEA prevention mechanism for water distribution infrastructure in Sofala.</p>
+      <span class="related-card-arrow" data-i18n="proj.detail.view">View Project &rarr;</span>
+    </a>
+  </div>
+</div></section>
+
+<section class="cta-section section-pad"><div class="container"><div class="cta-inner reveal">
+  <div class="section-label" data-i18n="proj.cta.label">Let''s Work Together</div>
+  <h2 data-i18n="proj.cta.title">Ready to Add Your Project to Our Portfolio?</h2>
+  <p data-i18n="proj.cta.desc">Contact us today to discuss your project''s environmental requirements.</p>
+  <div class="cta-actions">
+    <a href="contact.html" class="btn btn-primary" data-i18n="proj.cta.btn1">Start a Conversation</a>
+    <a href="projects.html" class="btn btn-outline" data-i18n="proj.detail.all">All Projects</a>
+  </div>
+</div></div></section>
+'@
+$chon += $FOOT + '</body></html>'
+$chon = $chon.Replace('__SVGEIA__', $SVGEIA).Replace('__SVGSUP__', $SVGSUP)
+W 'project-chongoene.html' $chon
+
+# ─────────────────────────────────────────────────────────────────────────────
+# project-beira.html  (Project 2)
+# ─────────────────────────────────────────────────────────────────────────────
+$beira = @'
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="ARAP and GRM for FIPAG WASIS II water distribution center in Beira, Sofala Province — World Bank-financed project prepared by Enviestudos for Ingerop Mozambique and GAUFF Engineering." />
+<title>FIPAG WASIS II Beira | Enviestudos Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" /></head><body>
+'@
+
+$beira += $NAV_PROJ
+
+$beira += @'
+
+<header class="page-hero"><div class="container"><div class="page-hero-content">
+  <div class="page-hero-label"><span class="lang-en">Water &amp; Sanitation &bull; Sofala Province</span><span class="lang-pt">&Aacute;gua e Saneamento &bull; Prov&iacute;ncia de Sofala</span></div>
+  <h1 data-i18n="proj.p2.title"></h1>
+  <div class="proj-hero-meta">
+    <div class="proj-hero-meta-item"><span class="proj-hero-meta-label" data-i18n="proj.detail.year">Year</span><span class="proj-hero-meta-value">2021&ndash;2022</span></div>
+    <div class="proj-hero-meta-item"><span class="proj-hero-meta-label" data-i18n="proj.detail.province">Province</span><span class="proj-hero-meta-value">Sofala (Beira)</span></div>
+    <div class="proj-hero-meta-item"><span class="proj-hero-meta-label" data-i18n="proj.detail.client">Client</span><span class="proj-hero-meta-value">Ingerop Mo&ccedil;ambique &amp; GAUFF Engineering</span></div>
+    <div class="proj-hero-meta-item"><span class="proj-hero-meta-label" data-i18n="proj.detail.funder">Funder</span><span class="proj-hero-meta-value">World Bank</span></div>
+  </div>
+  <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-top:1.5rem;">
+    <a href="index.html" data-i18n="bc.home">Home</a><span>&rsaquo;</span>
+    <a href="projects.html" data-i18n="nav.projects">Projects</a><span>&rsaquo;</span>
+    <span>FIPAG WASIS II, Beira</span>
+  </nav>
+</div></div></header>
+
+<section class="section-pad" style="background:var(--clr-white);"><div class="container"><div class="detail-layout">
+<div class="detail-body reveal">
+  <h2 data-i18n="proj.detail.overview">Project Overview</h2>
+  <div class="lang-en">
+    <p>The FIPAG Water and Sanitation Services Improvement Project II (WASIS II) is a World Bank-financed programme to improve water supply services across Mozambique. Enviestudos was engaged by Ingerop Mo&ccedil;ambique and GAUFF Engineering to prepare the social safeguard instruments for the Beira Distribution Center component &mdash; one of the project&rsquo;s key infrastructure investments in Sofala Province.</p>
+    <p>The Beira distribution center involves construction of new water treatment and distribution infrastructure. The project required a comprehensive package of World Bank safeguard documents, including an Abbreviated Resettlement Action Plan (ARAP), a Grievance Redress Mechanism, and a Gender-Based Violence and Sexual Exploitation &amp; Abuse prevention mechanism.</p>
+  </div>
+  <div class="lang-pt">
+    <p>O Projecto de Melhoria dos Servi&ccedil;os de &Aacute;gua e Saneamento do FIPAG II (WASIS II) &eacute; um programa financiado pelo Banco Mundial para melhorar os servi&ccedil;os de abastecimento de &aacute;gua em Mo&ccedil;ambique. A Enviestudos foi contratada pela Ingerop Mo&ccedil;ambique e GAUFF Engineering para elaborar os instrumentos de salvaguarda social para o componente Centro de Distribui&ccedil;&atilde;o de Beira &mdash; um dos investimentos chave em infraestrutura na Prov&iacute;ncia de Sofala.</p>
+    <p>O centro de distribui&ccedil;&atilde;o de Beira envolve a constru&ccedil;&atilde;o de nova infraestrutura de tratamento e distribui&ccedil;&atilde;o de &aacute;gua. O projecto exigiu um pacote abrangente de documentos de salvaguarda do Banco Mundial, incluindo um Plano de Ac&ccedil;&atilde;o de Reassentamento Abreviado (ARAP), um Mecanismo de Recla&ccedil;&atilde;o e Queixas e um mecanismo de preven&ccedil;&atilde;o de Viol&ecirc;ncia Baseada no G&eacute;nero e Explora&ccedil;&atilde;o e Abuso Sexual.</p>
+  </div>
+
+  <h2 data-i18n="proj.detail.scope">Scope of Work</h2>
+  <div class="lang-en"><ul>
+    <li>Socioeconomic baseline assessment of project-affected households and communities</li>
+    <li>Asset inventory and valuation of affected land and structures</li>
+    <li>Preparation of Abbreviated Resettlement Action Plan (ARAP) per World Bank OP 4.12</li>
+    <li>Eligibility and entitlement framework development aligned with WB and Mozambican law</li>
+    <li>Community consultation and participatory process with affected households</li>
+    <li>Design of project-level Grievance Redress Mechanism (GRM)</li>
+    <li>GBV/SEA prevention and response mechanism development</li>
+    <li>Coordination with FIPAG, Ingerop Mo&ccedil;ambique, GAUFF Engineering, and World Bank task team</li>
+  </ul></div>
+  <div class="lang-pt"><ul>
+    <li>Avalia&ccedil;&atilde;o de base socioecon&oacute;mica dos agg&eacute;regados familiares e comunidades afectados</li>
+    <li>Invent&aacute;rio e avalia&ccedil;&atilde;o de bens das terras e estruturas afectadas</li>
+    <li>Elabora&ccedil;&atilde;o do Plano de Ac&ccedil;&atilde;o de Reassentamento Abreviado (ARAP) conforme OP 4.12 do Banco Mundial</li>
+    <li>Desenvolvimento do quadro de elegibilidade e direitos alinhado com o Banco Mundial e a lei mo&ccedil;ambicana</li>
+    <li>Consulta comunit&aacute;ria e processo participativo com agg&eacute;regados afectados</li>
+    <li>Concep&ccedil;&atilde;o do Mecanismo de Recla&ccedil;&atilde;o e Queixas (MRQ) ao n&iacute;vel do projecto</li>
+    <li>Desenvolvimento do mecanismo de preven&ccedil;&atilde;o e resposta a VBG/EAS</li>
+    <li>Coordena&ccedil;&atilde;o com o FIPAG, Ingerop Mo&ccedil;ambique, GAUFF Engineering e equipa do Banco Mundial</li>
+  </ul></div>
+
+  <h2 data-i18n="proj.detail.enviro">Environmental Considerations</h2>
+  <div class="lang-en">
+    <p>The Beira context presented specific challenges that shaped our approach to this study:</p>
+    <ul>
+      <li><strong>Post-Cyclone Idai Context:</strong> The 2019 cyclone significantly affected Beira, and the study area included communities still in recovery. The socioeconomic baseline carefully documented pre- and post-cyclone conditions to ensure displacement compensation reflected genuine pre-project conditions.</li>
+      <li><strong>Dense Urban Context:</strong> Infrastructure routing in an urban environment required detailed, household-level asset surveys to capture diverse land use and livelihood patterns.</li>
+      <li><strong>World Bank Standards:</strong> All documents were prepared to satisfy World Bank OP 4.12 and the Gender and GBV Action Plan requirements of the WASIS II project, requiring close coordination with the WB task team throughout preparation.</li>
+      <li><strong>Multi-Language Consultation:</strong> Public consultations were conducted in Portuguese and Sena, with community feedback formally recorded and incorporated into the final ARAP.</li>
+    </ul>
+  </div>
+  <div class="lang-pt">
+    <p>O contexto de Beira apresentou desafios espec&iacute;ficos que moldaram a nossa abordagem ao estudo:</p>
+    <ul>
+      <li><strong>Contexto P&oacute;s-Ciclone Idai:</strong> O ciclone de 2019 afectou significativamente Beira, e a &aacute;rea de estudo inclu&iacute;a comunidades ainda em recupera&ccedil;&atilde;o. A base socioecon&oacute;mica documentou cuidadosamente as condi&ccedil;&otilde;es pr&eacute; e p&oacute;s-ciclone para garantir que a compensa&ccedil;&atilde;o por deslocamento reflectisse as condi&ccedil;&otilde;es genuinamente pr&eacute;-projecto.</li>
+      <li><strong>Contexto Urbano Denso:</strong> O tra&ccedil;ado da infraestrutura num ambiente urbano exigiu levantamentos de bens detalhados ao n&iacute;vel do agg&eacute;regado para capturar padr&otilde;es diversos de uso da terra e meios de subsist&ecirc;ncia.</li>
+      <li><strong>Normas do Banco Mundial:</strong> Todos os documentos foram preparados para satisfazer a OP 4.12 do Banco Mundial e os requisitos do Plano de Ac&ccedil;&atilde;o de G&eacute;nero e VBG do projecto WASIS II, exigindo estreita coordena&ccedil;&atilde;o com a equipa do Banco Mundial.</li>
+      <li><strong>Consulta Multil&iacute;ngue:</strong> As consultas p&uacute;blicas foram realizadas em portugu&ecirc;s e Sena, com o feedback comunit&aacute;rio formalmente registado e incorporado no ARAP final.</li>
+    </ul>
+  </div>
+
+  <h2 data-i18n="proj.detail.results">Results &amp; Impact</h2>
+  <div class="lang-en"><p>Enviestudos delivered a complete, World Bank-cleared safeguard package that enabled FIPAG and the project team to proceed with the Beira distribution center construction. The GRM and GBV mechanism established a community-accessible, transparent process for managing project-related grievances and protecting vulnerable women and girls during the construction phase.</p></div>
+  <div class="lang-pt"><p>A Enviestudos entregou um pacote completo de salvaguardas aprovado pelo Banco Mundial que permitiu ao FIPAG e &agrave; equipa do projecto avan&ccedil;ar com a constru&ccedil;&atilde;o do centro de distribui&ccedil;&atilde;o de Beira. O MRQ e o mecanismo de VBG estabeleceram um processo transparente e acess&iacute;vel &agrave; comunidade para gerir as queixas relacionadas com o projecto e proteger mulheres e raparigas vulner&aacute;veis durante a fase de constru&ccedil;&atilde;o.</p></div>
+
+  <div class="tags-row" style="margin-top:1.5rem;">
+    <span class="project-tag">World Bank OP 4.12</span><span class="project-tag">ARAP</span><span class="project-tag">GRM</span><span class="project-tag">GBV/SEA Mechanism</span><span class="project-tag">Water &amp; Sanitation</span><span class="project-tag">FIPAG</span>
+  </div>
+</div>
+
+<aside class="detail-sidebar reveal reveal-delay-2">
+  <div class="sidebar-card">
+    <div class="sidebar-card-title" data-i18n="proj.detail.details">Project Details</div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.sector">Sector</span><span class="sidebar-row-value">Water &amp; Sanitation</span></div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.year">Year</span><span class="sidebar-row-value">2021&ndash;2022</span></div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.province">Province</span><span class="sidebar-row-value">Sofala (Beira)</span></div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.client">Client</span><span class="sidebar-row-value">Ingerop Mo&ccedil;ambique &amp; GAUFF Engineering</span></div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.funder">Funder</span><span class="sidebar-row-value">World Bank</span></div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.svc-del">Services Delivered</span><span class="sidebar-row-value">ARAP &bull; GRM Design &bull; GBV/SEA Mechanism</span></div>
+  </div>
+  <div class="sidebar-card">
+    <div class="sidebar-card-title" data-i18n="proj.detail.svc-links">Related Services</div>
+    <div class="sidebar-links">
+      <a href="service-rap.html" class="sidebar-link">__SVGRAP__Resettlement Plans (RAP)</a>
+      <a href="service-esia.html" class="sidebar-link">__SVGEIA__ESIA Services</a>
+    </div>
+  </div>
+</aside>
+</div></div></section>
+
+<section class="section-pad" style="background:var(--clr-light-bg);"><div class="container">
+  <div class="text-center reveal">
+    <div class="section-label" data-i18n="proj.detail.more">More Projects</div>
+    <h2 class="section-title" data-i18n="proj.detail.related">Related Case Studies</h2>
+  </div>
+  <div class="related-grid" style="margin-top:2rem;">
+    <a href="project-chongoene.html" class="related-card reveal reveal-delay-1">
+      <span class="related-card-label">Infrastructure &bull; 2022</span>
+      <h4>ESIA &mdash; Port Infrastructure Construction, Chongoene</h4>
+      <p>Full ESIA for new port development in Gaza Province, financed by Chinese Bank.</p>
+      <span class="related-card-arrow" data-i18n="proj.detail.view">View Project &rarr;</span>
+    </a>
+    <a href="project-lurio.html" class="related-card reveal reveal-delay-2">
+      <span class="related-card-label">Roads &amp; Bridges &bull; 2021&ndash;2022</span>
+      <h4>ESIA &mdash; Bridge over L&uacute;rio River</h4>
+      <p>Cross-province bridge ESIA connecting Niassa and Nampula, financed by Chinese Bank.</p>
+      <span class="related-card-arrow" data-i18n="proj.detail.view">View Project &rarr;</span>
+    </a>
+  </div>
+</div></section>
+
+<section class="cta-section section-pad"><div class="container"><div class="cta-inner reveal">
+  <div class="section-label" data-i18n="proj.cta.label">Let''s Work Together</div>
+  <h2 data-i18n="proj.cta.title">Ready to Add Your Project to Our Portfolio?</h2>
+  <p data-i18n="proj.cta.desc">Contact us today to discuss your project''s environmental requirements.</p>
+  <div class="cta-actions">
+    <a href="contact.html" class="btn btn-primary" data-i18n="proj.cta.btn1">Start a Conversation</a>
+    <a href="projects.html" class="btn btn-outline" data-i18n="proj.detail.all">All Projects</a>
+  </div>
+</div></div></section>
+'@
+$beira += $FOOT + '</body></html>'
+$beira = $beira.Replace('__SVGRAP__', $SVGRAP).Replace('__SVGEIA__', $SVGEIA)
+W 'project-beira.html' $beira
+
+# ─────────────────────────────────────────────────────────────────────────────
+# project-lurio.html  (Project 3)
+# ─────────────────────────────────────────────────────────────────────────────
+$lurio = @'
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="ESIA for Bridge over L&uacute;rio River connecting Niassa and Nampula provinces — Enviestudos delivered scoping, public consultations, and ESMP for DH Mining Development." />
+<title>L&uacute;rio River Bridge ESIA | Enviestudos Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" /></head><body>
+'@
+
+$lurio += $NAV_PROJ
+
+$lurio += @'
+
+<header class="page-hero"><div class="container"><div class="page-hero-content">
+  <div class="page-hero-label"><span class="lang-en">Roads &amp; Bridges &bull; Niassa / Nampula</span><span class="lang-pt">Estradas e Pontes &bull; Niassa / Nampula</span></div>
+  <h1 data-i18n="proj.p3.title"></h1>
+  <div class="proj-hero-meta">
+    <div class="proj-hero-meta-item"><span class="proj-hero-meta-label" data-i18n="proj.detail.year">Year</span><span class="proj-hero-meta-value">2021&ndash;2022</span></div>
+    <div class="proj-hero-meta-item"><span class="proj-hero-meta-label" data-i18n="proj.detail.province">Province</span><span class="proj-hero-meta-value">Niassa / Nampula</span></div>
+    <div class="proj-hero-meta-item"><span class="proj-hero-meta-label" data-i18n="proj.detail.client">Client</span><span class="proj-hero-meta-value">DH Mining Development</span></div>
+    <div class="proj-hero-meta-item"><span class="proj-hero-meta-label" data-i18n="proj.detail.funder">Funder</span><span class="proj-hero-meta-value">Chinese Bank</span></div>
+  </div>
+  <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-top:1.5rem;">
+    <a href="index.html" data-i18n="bc.home">Home</a><span>&rsaquo;</span>
+    <a href="projects.html" data-i18n="nav.projects">Projects</a><span>&rsaquo;</span>
+    <span>L&uacute;rio River Bridge ESIA</span>
+  </nav>
+</div></div></header>
+
+<section class="section-pad" style="background:var(--clr-white);"><div class="container"><div class="detail-layout">
+<div class="detail-body reveal">
+  <h2 data-i18n="proj.detail.overview">Project Overview</h2>
+  <div class="lang-en">
+    <p>Enviestudos was engaged to deliver a full Environmental and Social Impact Assessment (ESIA) for the construction of a new bridge over the L&uacute;rio River on the Nipepe&ndash;Lalaua road, connecting Niassa and Nampula provinces in northern Mozambique. The project is financed by a Chinese Bank on behalf of DH Mining Development.</p>
+    <p>The L&uacute;rio River forms the natural boundary between Niassa and Nampula provinces. The new bridge represents a critical piece of transport infrastructure, improving connectivity and supporting economic activity in a region where river crossings have historically been seasonal obstacles. The project required careful environmental assessment given the ecological importance of the L&uacute;rio River system.</p>
+  </div>
+  <div class="lang-pt">
+    <p>A Enviestudos foi contratada para realizar um Estudo de Impacto Ambiental e Social (ESIA) completo para a constru&ccedil;&atilde;o de uma nova ponte sobre o Rio L&uacute;rio na estrada Nipepe&ndash;Lalaua, ligando as Prov&iacute;ncias de Niassa e Nampula no norte de Mo&ccedil;ambique. O projecto &eacute; financiado por um Banco Chin&ecirc;s em nome da DH Mining Development.</p>
+    <p>O Rio L&uacute;rio constitui a fronteira natural entre as Prov&iacute;ncias de Niassa e Nampula. A nova ponte representa uma pe&ccedil;a cr&iacute;tica de infraestrutura de transporte, melhorando a conectividade e apoiando a actividade econ&oacute;mica numa regi&atilde;o onde as travessias fluviais t&ecirc;m sido historicamente obst&aacute;culos sazonais. O projecto exigiu uma cuidadosa avalia&ccedil;&atilde;o ambiental dada a import&acirc;ncia ecol&oacute;gica do sistema do Rio L&uacute;rio.</p>
+  </div>
+
+  <h2 data-i18n="proj.detail.scope">Scope of Work</h2>
+  <div class="lang-en"><ul>
+    <li>Pre-feasibility Environmental Scoping Report covering the Nipepe&ndash;Lalaua corridor</li>
+    <li>Environmental categorisation and Instruction Process submission</li>
+    <li>Terms of Reference (ToR) preparation and submission to provincial DPCA</li>
+    <li>Baseline surveys: freshwater ecology, riparian vegetation, hydrology, socioeconomics</li>
+    <li>Community and stakeholder public consultation meetings in Niassa and Nampula</li>
+    <li>Assessment of impacts on the L&uacute;rio River ecosystem during and after construction</li>
+    <li>Preparation of the full ESIA Report</li>
+    <li>Integrated Environmental and Social Management Plan (ESMP)</li>
+  </ul></div>
+  <div class="lang-pt"><ul>
+    <li>Relat&oacute;rio de Delimita&ccedil;&atilde;o Ambiental de Pr&eacute;-viabilidade abrangendo o corredor Nipepe&ndash;Lalaua</li>
+    <li>Categoriza&ccedil;&atilde;o ambiental e submiss&atilde;o do Processo de Instru&ccedil;&atilde;o</li>
+    <li>Elabora&ccedil;&atilde;o dos Termos de Refer&ecirc;ncia (ToR) e submiss&atilde;o &agrave; DPCA provincial</li>
+    <li>Levantamentos de base: ecologia de &aacute;gua doce, vegeta&ccedil;&atilde;o rip&aacute;ria, hidrologia, socioecon&oacute;mica</li>
+    <li>Reuni&otilde;es de consulta p&uacute;blica com a comunidade e partes interessadas em Niassa e Nampula</li>
+    <li>Avalia&ccedil;&atilde;o dos impactos no ecossistema do Rio L&uacute;rio durante e ap&oacute;s a constru&ccedil;&atilde;o</li>
+    <li>Elabora&ccedil;&atilde;o do Relat&oacute;rio Final de ESIA</li>
+    <li>Plano de Gest&atilde;o Ambiental e Social (PGAS) integrado</li>
+  </ul></div>
+
+  <h2 data-i18n="proj.detail.enviro">Environmental Considerations</h2>
+  <div class="lang-en"><ul>
+    <li><strong>Freshwater Ecology:</strong> The L&uacute;rio River supports diverse freshwater fisheries on which local communities depend for protein and income. The baseline characterised fish communities, invertebrate assemblages, and riparian vegetation.</li>
+    <li><strong>Hydrology &amp; Sedimentation:</strong> In-water construction activities, particularly bridge pier installation, carry risks of sedimentation and turbidity impacts on downstream water quality and aquatic habitats.</li>
+    <li><strong>Riparian Forest:</strong> Assessment of riparian vegetation along the river banks, with recommendations to minimise clearing and ensure restoration of disturbed banks.</li>
+    <li><strong>Cross-Province Scope:</strong> With activities in two provinces, the study required engagement with DPCA officers in both Niassa and Nampula, as well as consultation with communities on both banks.</li>
+    <li><strong>Access Road Impacts:</strong> Construction access routes through the Nipepe&ndash;Lalaua corridor required assessment of secondary impacts on soils, vegetation, and community land.</li>
+  </ul></div>
+  <div class="lang-pt"><ul>
+    <li><strong>Ecologia de &Aacute;gua Doce:</strong> O Rio L&uacute;rio suporta diversas pescarias de &aacute;gua doce das quais as comunidades locais dependem para prote&iacute;na e rendimento. A base caracterizou as comunidades de peixes, assemblagens de invertebrados e vegeta&ccedil;&atilde;o rip&aacute;ria.</li>
+    <li><strong>Hidrologia e Sedimenta&ccedil;&atilde;o:</strong> As actividades de constru&ccedil;&atilde;o na &aacute;gua, particularmente a instala&ccedil;&atilde;o de pilares de pontes, comportam riscos de sedimenta&ccedil;&atilde;o e impactos de turbidez na qualidade da &aacute;gua a jusante.</li>
+    <li><strong>Floresta Rip&aacute;ria:</strong> Avalia&ccedil;&atilde;o da vegeta&ccedil;&atilde;o rip&aacute;ria ao longo das margens do rio, com recomenda&ccedil;&otilde;es para minimizar a desbrozamento e garantir a restaura&ccedil;&atilde;o das margens perturbadas.</li>
+    <li><strong>&Acirc;mbito Multi-Provincial:</strong> Com actividades em duas prov&iacute;ncias, o estudo exigiu o envolvimento com os respons&aacute;veis da DPCA em Niassa e Nampula, bem como a consulta de comunidades em ambas as margens.</li>
+    <li><strong>Impactos de Vias de Acesso:</strong> As vias de acesso de constru&ccedil;&atilde;o atrav&eacute;s do corredor Nipepe&ndash;Lalaua exigiram avalia&ccedil;&atilde;o dos impactos secund&aacute;rios nos solos, vegeta&ccedil;&atilde;o e terras comunit&aacute;rias.</li>
+  </ul></div>
+
+  <h2 data-i18n="proj.detail.results">Results &amp; Impact</h2>
+  <div class="lang-en">
+    <p>The completed ESIA provided DH Mining Development with a comprehensive, regulator-approved environmental study enabling the project to advance through the Mozambican Licence Ambiental process. The ESMP delivered specific, implementable measures to protect the L&uacute;rio River ecosystem during construction.</p>
+    <p>The bridge, once constructed, will significantly improve all-season road connectivity between Niassa and Nampula, benefiting agricultural produce transport, community access to health and education services, and economic integration of the region.</p>
+  </div>
+  <div class="lang-pt">
+    <p>O ESIA conclu&iacute;do forneceu &agrave; DH Mining Development um estudo ambiental abrangente, aprovado pelo regulador, permitindo ao projecto avan&ccedil;ar atrav&eacute;s do processo de Licen&ccedil;a Ambiental mo&ccedil;ambicana. O PGAS forneceu medidas espec&iacute;ficas e implement&aacute;veis para proteger o ecossistema do Rio L&uacute;rio durante a constru&ccedil;&atilde;o.</p>
+    <p>A ponte, uma vez constru&iacute;da, melhorar&aacute; significativamente a conectividade rodovi&aacute;ria em todas as esta&ccedil;&otilde;es entre Niassa e Nampula, beneficiando o transporte de produtos agr&iacute;colas, o acesso das comunidades a servi&ccedil;os de sa&uacute;de e educa&ccedil;&atilde;o, e a integra&ccedil;&atilde;o econ&oacute;mica da regi&atilde;o.</p>
+  </div>
+
+  <div class="tags-row" style="margin-top:1.5rem;">
+    <span class="project-tag">ESIA</span><span class="project-tag">ESMP</span><span class="project-tag">Bridge</span><span class="project-tag">Freshwater Ecology</span><span class="project-tag">Cross-Province</span><span class="project-tag">Niassa</span><span class="project-tag">Nampula</span>
+  </div>
+</div>
+
+<aside class="detail-sidebar reveal reveal-delay-2">
+  <div class="sidebar-card">
+    <div class="sidebar-card-title" data-i18n="proj.detail.details">Project Details</div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.sector">Sector</span><span class="sidebar-row-value">Roads &amp; Bridges</span></div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.year">Year</span><span class="sidebar-row-value">2021&ndash;2022</span></div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.province">Province</span><span class="sidebar-row-value">Niassa &amp; Nampula</span></div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.client">Client</span><span class="sidebar-row-value">DH Mining Development</span></div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.funder">Funder</span><span class="sidebar-row-value">Chinese Bank</span></div>
+    <div class="sidebar-row"><span class="sidebar-row-label" data-i18n="proj.detail.svc-del">Services Delivered</span><span class="sidebar-row-value">ESIA &bull; Scoping &bull; ESMP &bull; Consultations</span></div>
+  </div>
+  <div class="sidebar-card">
+    <div class="sidebar-card-title" data-i18n="proj.detail.svc-links">Related Services</div>
+    <div class="sidebar-links">
+      <a href="service-esia.html" class="sidebar-link">__SVGEIA__ESIA Services</a>
+      <a href="service-monitoring.html" class="sidebar-link">__SVGSUP__Environmental Supervision</a>
+    </div>
+  </div>
+</aside>
+</div></div></section>
+
+<section class="section-pad" style="background:var(--clr-light-bg);"><div class="container">
+  <div class="text-center reveal">
+    <div class="section-label" data-i18n="proj.detail.more">More Projects</div>
+    <h2 class="section-title" data-i18n="proj.detail.related">Related Case Studies</h2>
+  </div>
+  <div class="related-grid" style="margin-top:2rem;">
+    <a href="project-chongoene.html" class="related-card reveal reveal-delay-1">
+      <span class="related-card-label">Infrastructure &bull; 2022</span>
+      <h4>ESIA &mdash; Port Infrastructure Construction, Chongoene</h4>
+      <p>Full ESIA for new port development in Gaza Province, financed by Chinese Bank.</p>
+      <span class="related-card-arrow" data-i18n="proj.detail.view">View Project &rarr;</span>
+    </a>
+    <a href="project-beira.html" class="related-card reveal reveal-delay-2">
+      <span class="related-card-label">Water &bull; World Bank &bull; 2021&ndash;2022</span>
+      <h4>ARAP &mdash; Distribution Center, Beira (FIPAG WASIS II)</h4>
+      <p>ARAP, GRM design, and GBV/SEA prevention mechanism for water infrastructure in Sofala.</p>
+      <span class="related-card-arrow" data-i18n="proj.detail.view">View Project &rarr;</span>
+    </a>
+  </div>
+</div></section>
+
+<section class="cta-section section-pad"><div class="container"><div class="cta-inner reveal">
+  <div class="section-label" data-i18n="proj.cta.label">Let''s Work Together</div>
+  <h2 data-i18n="proj.cta.title">Ready to Add Your Project to Our Portfolio?</h2>
+  <p data-i18n="proj.cta.desc">Contact us today to discuss your project''s environmental requirements.</p>
+  <div class="cta-actions">
+    <a href="contact.html" class="btn btn-primary" data-i18n="proj.cta.btn1">Start a Conversation</a>
+    <a href="projects.html" class="btn btn-outline" data-i18n="proj.detail.all">All Projects</a>
+  </div>
+</div></div></section>
+'@
+$lurio += $FOOT + '</body></html>'
+$lurio = $lurio.Replace('__SVGEIA__', $SVGEIA).Replace('__SVGSUP__', $SVGSUP)
+W 'project-lurio.html' $lurio
+
+Write-Host "Done: 3 project pages retrofitted."
