@@ -207,7 +207,8 @@
       'svc.hero.desc':  'End-to-end environmental consultancy aligned with Mozambican legislation and international development bank safeguard requirements.',
       'svc.bc':         'Services',
 
-      'svc.esia.title': 'Environmental & Social Impact Assessment (ESIA)',
+      'svc.esia.title':    'Environmental & Social Impact Assessment (ESIA)',
+      'svc.esia.tagline':  'Full-cycle ESIA studies that meet Mozambican regulatory requirements and international funder standards.',
       'svc.esia.desc':  'Our flagship service — rigorous, multidisciplinary ESIAs that satisfy the requirements of Mozambican environmental law (Lei n.º 20/97 and Decreto n.º 54/2015) and the environmental and social safeguard policies of international development banks.',
       'svc.esia.li1':   'Preparation of Instruction Process for environmental categorisation',
       'svc.esia.li2':   'Pre-feasibility studies and Environmental Scoping Reports',
@@ -229,7 +230,8 @@
       'svc.esmp.li7':   'Health, safety, and occupational risk management protocols',
       'svc.esmp.li8':   'Decommissioning and site closure plans',
 
-      'svc.audits.title': 'Environmental Audits',
+      'svc.audits.title':   'Environmental Audits',
+      'svc.audits.tagline': 'Independent, evidence-based audits assessing environmental compliance, EHS management systems, and operational performance.',
       'svc.audits.desc':  'Independent, systematic assessments of a project\'s or facility\'s environmental compliance status against national legislation, licence conditions, and international standards.',
       'svc.audits.li1':   'Compliance audits against ESMP/EMP requirements',
       'svc.audits.li2':   'Regulatory compliance audits (MITADER/ANAMA requirements)',
@@ -238,7 +240,8 @@
       'svc.audits.li5':   'Preparation of Audit Reports with corrective action plans',
       'svc.audits.li6':   'Post-audit follow-up and verification',
 
-      'svc.rap.title': 'Resettlement Action Plans (RAP / ARAP)',
+      'svc.rap.title':    'Resettlement Action Plans (RAP / ARAP)',
+      'svc.rap.tagline':  'Comprehensive RAP and ARAP preparation that balances regulatory requirements with community-centred, rights-based resettlement practice.',
       'svc.rap.desc':  'Culturally sensitive and legally compliant resettlement planning in accordance with World Bank OP 4.12 and Mozambican land law.',
       'svc.rap.li1':   'Census and socioeconomic baseline surveys of affected populations',
       'svc.rap.li2':   'Asset inventory and valuation',
@@ -249,7 +252,8 @@
       'svc.rap.li7':   'Community consultation and participation throughout',
       'svc.rap.li8':   'GRM design and implementation support',
 
-      'svc.sup.title': 'Environmental Supervision & Monitoring',
+      'svc.sup.title':    'Environmental Supervision & Monitoring',
+      'svc.sup.tagline':  'On-site EHS supervision and environmental monitoring to ensure construction contractors implement ESMP commitments and meet regulatory requirements.',
       'svc.sup.desc':  'On-site environmental supervision during construction and operational phases to verify ESMP implementation, identify non-conformances, and ensure continuous compliance.',
       'svc.sup.li1':   'Regular site inspections and environmental performance monitoring',
       'svc.sup.li2':   'Health, safety & environmental (EHS) supervision and reporting',
@@ -774,7 +778,8 @@
       'svc.hero.desc':  'Consultoria ambiental completa, alinhada com a legislação moçambicana e os requisitos de salvaguarda dos bancos de desenvolvimento internacionais.',
       'svc.bc':         'Serviços',
 
-      'svc.esia.title': 'Estudo de Impacto Ambiental e Social (EIA)',
+      'svc.esia.title':    'Estudo de Impacto Ambiental e Social (EIA)',
+      'svc.esia.tagline':  'Estudos de ESIA de ciclo completo que satisfazem os requisitos regulatórios moçambicanos e as normas dos financiadores internacionais.',
       'svc.esia.desc':  'O nosso serviço principal — EIAs rigorosos e multidisciplinares que satisfazem os requisitos da legislação ambiental moçambicana (Lei n.º 20/97 e Decreto n.º 54/2015) e as políticas de salvaguarda dos bancos de desenvolvimento internacionais.',
       'svc.esia.li1':   'Elaboração do Processo de Instrução para categorização ambiental',
       'svc.esia.li2':   'Estudos de Pré-viabilidade e Relatórios de Delimitação',
@@ -796,7 +801,8 @@
       'svc.esmp.li7':   'Protocolos de gestão de saúde, segurança e riscos ocupacionais',
       'svc.esmp.li8':   'Planos de desmantelamento e encerramento de instalações',
 
-      'svc.audits.title': 'Auditorias Ambientais',
+      'svc.audits.title':   'Auditorias Ambientais',
+      'svc.audits.tagline': 'Auditorias independentes e baseadas em evidências que avaliam a conformidade ambiental, os sistemas de gestão de HSA e o desempenho operacional.',
       'svc.audits.desc':  'Avaliações independentes e sistemáticas do estado de conformidade ambiental de um projecto ou instalação face à legislação nacional, condições de licenciamento e normas internacionais.',
       'svc.audits.li1':   'Auditorias de conformidade com requisitos do PGAS/PGA',
       'svc.audits.li2':   'Auditorias de conformidade regulatória (requisitos do MITADER/ANAMA)',
@@ -805,7 +811,8 @@
       'svc.audits.li5':   'Elaboração de Relatórios de Auditoria com planos de acção correctiva',
       'svc.audits.li6':   'Seguimento pós-auditoria e verificação',
 
-      'svc.rap.title': 'Planos de Acção de Reassentamento (PAR / PAAR)',
+      'svc.rap.title':    'Planos de Acção de Reassentamento (PAR / PAAR)',
+      'svc.rap.tagline':  'Elaboração abrangente de RAP e ARAP que equilibra os requisitos regulatórios com a prática de reassentamento centrada na comunidade e baseada em direitos.',
       'svc.rap.desc':  'Planeamento de reassentamento culturalmente sensível e juridicamente conforme, de acordo com a OP 4.12 do Banco Mundial e a lei fundiária moçambicana.',
       'svc.rap.li1':   'Recenseamento e levantamentos socioeconómicos de base das populações afectadas',
       'svc.rap.li2':   'Inventário e avaliação de activos',
@@ -816,7 +823,8 @@
       'svc.rap.li7':   'Consulta e participação comunitária durante todo o processo',
       'svc.rap.li8':   'Concepção e implementação do MRQ',
 
-      'svc.sup.title': 'Supervisão e Monitorização Ambiental',
+      'svc.sup.title':    'Supervisão e Monitorização Ambiental',
+      'svc.sup.tagline':  'Supervisão de HSA no local e monitorização ambiental para garantir que os empreiteiros implementam os compromissos do PGAS e cumprem os requisitos regulatórios.',
       'svc.sup.desc':  'Supervisão ambiental no local durante as fases de construção e operação para verificar a implementação do PGAS, identificar não-conformidades e garantir conformidade contínua.',
       'svc.sup.li1':   'Inspecções regulares de terreno e monitorização do desempenho ambiental',
       'svc.sup.li2':   'Supervisão e relatórios de saúde, segurança e ambiente (HSA)',
