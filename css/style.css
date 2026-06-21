@@ -2065,3 +2065,130 @@ footer {
   .hero-actions .btn { width: 100%; justify-content: center; }
   .cta-actions  { flex-direction: column; align-items: center; }
 }
+
+/* ─── Service / Project Detail Pages ─── */
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 3.5rem;
+  align-items: start;
+}
+.detail-body h2 {
+  font-size: 1.35rem; margin-top: 2.5rem; margin-bottom: 0.75rem; color: var(--clr-primary-dark);
+}
+.detail-body h2:first-child { margin-top: 0; }
+.detail-body > p { color: var(--clr-text-muted); line-height: 1.75; margin-bottom: 1rem; }
+.detail-body ul { padding-left: 1.25rem; display: grid; gap: 0.45rem; margin: 0.75rem 0 1rem; }
+.detail-body li { color: var(--clr-text-muted); line-height: 1.7; }
+
+.detail-process { display: grid; gap: 1.25rem; margin-top: 1rem; }
+.detail-process-item { display: flex; gap: 1.25rem; align-items: flex-start; }
+.detail-process-num {
+  font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800;
+  color: var(--clr-secondary); min-width: 2.5rem; line-height: 1; padding-top: 0.1rem;
+}
+.detail-process-text h4 { margin-bottom: 0.2rem; font-size: 1rem; color: var(--clr-primary-dark); }
+.detail-process-text p { font-size: 0.875rem; color: var(--clr-text-muted); line-height: 1.65; margin: 0; }
+
+.detail-sidebar { position: sticky; top: calc(var(--nav-h) + 1.5rem); }
+.sidebar-card {
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+  background: var(--clr-light-bg);
+}
+.sidebar-card + .sidebar-card { margin-top: 1.5rem; }
+.sidebar-card-title {
+  font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--clr-text-muted); margin-bottom: 1rem;
+}
+.sidebar-row {
+  display: flex; flex-direction: column; gap: 0.2rem;
+  padding: 0.75rem 0; border-bottom: 1px solid var(--clr-border);
+}
+.sidebar-row:last-child { border-bottom: none; padding-bottom: 0; }
+.sidebar-row-label {
+  font-family: var(--font-heading); font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em; color: var(--clr-text-muted);
+}
+.sidebar-row-value { font-size: 0.9rem; font-weight: 500; color: var(--clr-primary-dark); }
+.sidebar-links { display: flex; flex-direction: column; gap: 0.5rem; }
+.sidebar-link {
+  display: flex; align-items: center; gap: 0.5rem; padding: 0.7rem 0.9rem;
+  border-radius: var(--radius); border: 1px solid var(--clr-border);
+  color: var(--clr-primary-dark); font-size: 0.875rem; font-weight: 500;
+  transition: var(--transition); text-decoration: none;
+}
+.sidebar-link:hover { border-color: var(--clr-secondary); color: var(--clr-secondary); background: rgba(45,200,160,0.04); }
+.sidebar-link svg { width: 14px; height: 14px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+
+.tags-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.25rem; }
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem; margin-top: 1.5rem;
+}
+.related-card {
+  border: 1.5px solid var(--clr-border); border-radius: var(--radius-lg); padding: 1.5rem;
+  background: var(--clr-white); transition: var(--transition);
+  text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 0.4rem;
+}
+.related-card:hover { border-color: var(--clr-secondary); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.related-card-label {
+  font-family: var(--font-heading); font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--clr-secondary);
+}
+.related-card h4 { font-size: 0.95rem; color: var(--clr-primary-dark); margin: 0; }
+.related-card p { font-size: 0.82rem; color: var(--clr-text-muted); line-height: 1.6; margin: 0; }
+.related-card-arrow { font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; color: var(--clr-secondary); margin-top: auto; padding-top: 0.5rem; }
+
+.proj-hero-meta {
+  display: flex; flex-wrap: wrap; gap: 1.5rem 2.5rem; margin-top: 2rem;
+  padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.18);
+}
+.proj-hero-meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+.proj-hero-meta-label {
+  font-family: var(--font-heading); font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.45);
+}
+.proj-hero-meta-value { font-size: 0.95rem; font-weight: 500; color: var(--clr-white); }
+
+/* Service overview cards (simplified services.html) */
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem; margin-top: 3rem;
+}
+.svc-card {
+  border: 1.5px solid var(--clr-border); border-radius: var(--radius-xl); padding: 2rem;
+  background: var(--clr-white); transition: var(--transition);
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.svc-card:hover { border-color: var(--clr-secondary); box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+.svc-card-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: linear-gradient(135deg, #041C0C 0%, #0C5C2A 100%);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.svc-card-icon svg { width: 26px; height: 26px; stroke: #fff; fill: none; stroke-width: 1.5; stroke-linecap: round; }
+.svc-card h3 { font-size: 1.05rem; margin: 0; color: var(--clr-primary-dark); }
+.svc-card p { font-size: 0.875rem; color: var(--clr-text-muted); line-height: 1.65; flex: 1; margin: 0; }
+.svc-card-link {
+  font-family: var(--font-heading); font-size: 0.82rem; font-weight: 700;
+  color: var(--clr-primary); display: inline-flex; align-items: center; gap: 0.4rem;
+  transition: gap 0.2s, color 0.2s; text-decoration: none; padding-top: 0.25rem;
+}
+.svc-card-link:hover { color: var(--clr-secondary); gap: 0.7rem; }
+.svc-card-link svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+@media (max-width: 900px) {
+  .detail-layout { grid-template-columns: 1fr; }
+  .detail-sidebar { position: static; }
+}
+@media (max-width: 767px) {
+  .svc-grid { grid-template-columns: 1fr; }
+  .related-grid { grid-template-columns: 1fr; }
+  .proj-hero-meta { gap: 1rem 1.5rem; }
+}
