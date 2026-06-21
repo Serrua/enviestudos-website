@@ -2192,3 +2192,9 @@ footer {
   .related-grid { grid-template-columns: 1fr; }
   .proj-hero-meta { gap: 1rem 1.5rem; }
 }
+
+/* ─── Language-Block Visibility Toggles ─── */
+/* Usage: wrap bilingual content in <div class="lang-en"> / <div class="lang-pt"> */
+.lang-pt { display: none; }
+html[lang="pt"] .lang-pt { display: block; }
+html[lang="pt"] .lang-en { display: none; }
