@@ -633,7 +633,7 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
   overflow: hidden;
 }
 
-/* Each card stretches equally; hovered card expands */
+/* Each card stretches equally; active card expands */
 .priority-card {
   flex: 1;
   position: relative;
@@ -642,7 +642,7 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
   transition: flex 0.55s cubic-bezier(0.4, 0, 0.2, 1);
   min-width: 72px;
 }
-.priority-card:hover { flex: 2.4; }
+.priority-card.active { flex: 2.4; }
 
 /* Background layer — gradient always shows; photo overlays when present */
 .priority-bg {
@@ -650,7 +650,7 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
   inset: 0;
   transition: transform 0.65s ease;
 }
-.priority-card:hover .priority-bg { transform: scale(1.05); }
+.priority-card.active .priority-bg { transform: scale(1.03); }
 
 .priority-bg img {
   position: absolute;
@@ -710,7 +710,42 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
   text-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 
-/* Description — hidden until hover */
+/* Accordion row: title + expand button side by side */
+.accordion-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.1rem;
+}
+.accordion-row h3 { flex: 1; margin: 0; }
+
+/* Expand / collapse button */
+.expand-btn {
+  width: 38px; height: 38px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.40);
+  background: rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease;
+  color: white;
+}
+.expand-btn:hover {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.75);
+}
+.expand-btn svg {
+  width: 15px; height: 15px;
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+/* + rotates 45° → × when active */
+.priority-card.active .expand-btn svg,
+.proj-card.active .expand-btn svg { transform: rotate(45deg); }
+
+/* Description — hidden until active */
 .priority-desc {
   font-size: 0.875rem;
   color: rgba(255,255,255,0.78);
@@ -721,12 +756,9 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
   opacity: 0;
   transition: max-height 0.45s ease, opacity 0.35s ease 0.05s;
 }
-.priority-card:hover .priority-desc {
-  max-height: 120px;
-  opacity: 1;
-}
+.priority-card.active .priority-desc { max-height: 120px; opacity: 1; }
 
-/* "Learn More" link — hidden until hover */
+/* "Learn More" link — hidden until active */
 .priority-link {
   display: inline-flex;
   align-items: center;
@@ -744,11 +776,11 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
   transition: opacity 0.3s ease 0.12s, transform 0.3s ease 0.12s, border-color 0.2s ease, gap 0.2s ease;
   width: fit-content;
 }
-.priority-card:hover .priority-link { opacity: 1; transform: translateY(0); }
+.priority-card.active .priority-link { opacity: 1; transform: translateY(0); }
 .priority-link:hover { border-color: var(--clr-secondary); color: var(--clr-secondary); gap: 0.65rem; }
 .priority-link svg { width: 14px; height: 14px; flex-shrink: 0; }
 
-/* Mobile — vertical stack, content always visible */
+/* Mobile — vertical stack */
 @media (max-width: 767px) {
   .priorities-grid {
     flex-direction: column;
@@ -756,10 +788,17 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
     gap: 3px;
     border-radius: var(--radius-lg);
   }
-  .priority-card { flex: none; height: 220px; min-width: unset; }
-  .priority-card:hover { flex: none; }
-  .priority-desc { max-height: 80px; opacity: 1; }
-  .priority-link { opacity: 1; transform: none; }
+  .priority-card {
+    flex: none;
+    height: 90px;
+    min-width: unset;
+    transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .priority-card.active { height: 300px; }
+  .priority-card.active .priority-desc { max-height: 120px; opacity: 1; }
+  .priority-card.active .priority-link { opacity: 1; transform: none; }
+  .priority-content { padding: 1.25rem 1.25rem; }
+  .priority-content h3 { font-size: 0.92rem; }
 }
 
 /* ─── Featured Projects Accordion (Homepage) ─── */
@@ -780,7 +819,7 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
   min-width: 80px;
   transition: flex 0.55s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.proj-card:hover { flex: 2.5; }
+.proj-card.active { flex: 2.5; }
 
 /* Background layer */
 .proj-bg {
@@ -788,7 +827,7 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
   inset: 0;
   transition: transform 0.65s ease;
 }
-.proj-card:hover .proj-bg { transform: scale(1.04); }
+.proj-card.active .proj-bg { transform: scale(1.03); }
 
 .proj-bg img {
   position: absolute;
@@ -848,7 +887,7 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
   text-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 
-/* Description — revealed on hover */
+/* Description — revealed when active */
 .proj-desc {
   font-size: 0.875rem;
   color: rgba(255,255,255,0.78);
@@ -859,9 +898,9 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
   opacity: 0;
   transition: max-height 0.45s ease, opacity 0.35s ease 0.05s;
 }
-.proj-card:hover .proj-desc { max-height: 90px; opacity: 1; }
+.proj-card.active .proj-desc { max-height: 90px; opacity: 1; }
 
-/* Meta row — revealed on hover */
+/* Meta row — revealed when active */
 .proj-meta {
   display: flex;
   align-items: center;
@@ -872,7 +911,7 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
   transform: translateY(5px);
   transition: opacity 0.32s ease 0.12s, transform 0.32s ease 0.12s;
 }
-.proj-card:hover .proj-meta { opacity: 1; transform: translateY(0); }
+.proj-card.active .proj-meta { opacity: 1; transform: translateY(0); }
 
 .proj-meta-item {
   display: flex;
@@ -884,12 +923,9 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
   font-weight: 500;
   white-space: nowrap;
 }
-.proj-meta-item svg {
-  width: 12px; height: 12px;
-  flex-shrink: 0;
-}
+.proj-meta-item svg { width: 12px; height: 12px; flex-shrink: 0; }
 
-/* Tags — revealed on hover */
+/* Tags — revealed when active */
 .proj-tags {
   display: flex;
   gap: 0.4rem;
@@ -899,7 +935,7 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
   transform: translateY(5px);
   transition: opacity 0.32s ease 0.16s, transform 0.32s ease 0.16s;
 }
-.proj-card:hover .proj-tags { opacity: 1; transform: translateY(0); }
+.proj-card.active .proj-tags { opacity: 1; transform: translateY(0); }
 
 .proj-tag {
   font-size: 0.68rem;
@@ -913,7 +949,7 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
   letter-spacing: 0.04em;
 }
 
-/* Link — revealed on hover */
+/* Link — revealed when active */
 .proj-link {
   display: inline-flex;
   align-items: center;
@@ -931,11 +967,11 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
   transform: translateY(6px);
   transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s, border-color 0.2s, color 0.2s, gap 0.2s;
 }
-.proj-card:hover .proj-link { opacity: 1; transform: translateY(0); }
+.proj-card.active .proj-link { opacity: 1; transform: translateY(0); }
 .proj-link:hover { border-color: var(--clr-secondary); color: var(--clr-secondary); gap: 0.65rem; }
 .proj-link svg { width: 14px; height: 14px; flex-shrink: 0; }
 
-/* ── Mobile: vertical stack, all content always visible ── */
+/* ── Mobile: vertical stack, click to expand ── */
 @media (max-width: 767px) {
   .proj-accordion {
     flex-direction: column;
@@ -943,13 +979,18 @@ p  { color: var(--clr-text-body); line-height: 1.8; }
     gap: 3px;
     border-radius: var(--radius-lg);
   }
-  .proj-card { flex: none; height: 260px; min-width: unset; }
-  .proj-card:hover { flex: none; }
-  .proj-desc  { max-height: 120px; opacity: 1; }
-  .proj-meta  { opacity: 1; transform: none; }
-  .proj-tags  { opacity: 1; transform: none; }
-  .proj-link  { opacity: 1; transform: none; }
-  .proj-content { padding: 1.5rem; }
+  .proj-card {
+    flex: none;
+    height: 90px;
+    min-width: unset;
+    transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .proj-card.active { height: 340px; }
+  .proj-card.active .proj-desc  { max-height: 120px; opacity: 1; }
+  .proj-card.active .proj-meta  { opacity: 1; transform: none; }
+  .proj-card.active .proj-tags  { opacity: 1; transform: none; }
+  .proj-card.active .proj-link  { opacity: 1; transform: none; }
+  .proj-content { padding: 1.25rem; }
   .proj-content h3 { font-size: 0.92rem; }
 }
 
