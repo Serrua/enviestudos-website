@@ -5,6 +5,7 @@
      data-i18n-html="key"  → sets element.innerHTML (for bold/span inside)
      data-i18n-ph="key"    → sets input/textarea placeholder
      data-i18n-aria="key"  → sets aria-label
+     data-i18n-alt="key"   → sets image alt text
    ============================================================ */
 
 (function () {
@@ -41,7 +42,7 @@
       'footer.link.projects':'Projects',
       'footer.link.blog':    'Insights',
       'footer.link.contact': 'Contact',
-      'footer.copy':         '© 2025 Enviestudos, Consultoria Ambiental & Serviços, Lda. All rights reserved.',
+      'footer.copy':         '© {year} Enviestudos, Consultoria Ambiental & Serviços, Lda. All rights reserved.',
       'footer.privacy':      'Privacy Policy',
       'footer.terms':        'Terms of Use',
 
@@ -97,6 +98,10 @@
       'home.svc.training.title':   'Training & Capacity Building',
       'home.svc.training.desc':    'Professional development programs on environmental regulations, ESIA methodology, and EHS management for government and private sector teams.',
       'home.svc.learnmore':        'Learn more',
+      'home.svc.esia.tag':         'ESIA',
+      'home.svc.audits.tag':       'Audits',
+      'home.svc.supervision.tag':  'Monitoring',
+      'home.svc.rap.tag':          'Social',
 
       'home.about.label':   'Who We Are',
       'home.about.title':   "18+ Years Serving Mozambique's Development",
@@ -581,6 +586,35 @@
       'svc.detail.proj-links':   'Related Projects',
       'svc.detail.more':         'More Services',
       'svc.detail.all':          'All Services',
+
+      /* --- Image alt text --- */
+      'img.alt.home.bridge':      'Aerial view of a steel truss bridge on an unpaved rural road, with mountains in the distance',
+      'img.alt.esia.hall':        'Public consultation meeting in a hall, with a presenter addressing seated participants',
+      'img.alt.rap.meeting':      'Outdoor community meeting held beside traditional houses',
+      'img.alt.proj.bridge':      'Aerial view of a steel truss bridge over a river, with a vehicle crossing',
+      'img.alt.proj.road':        'Aerial view of a rural road crossing open savanna, with mountains in the distance',
+      'img.alt.proj.approach':    'Aerial view of an unpaved road approach leading to a bridge',
+      'img.alt.proj.powerline':   'Aerial view of a rural landscape crossed by overhead power lines',
+      'img.alt.proj.consultation':'Community consultation meeting held under a tree in a rural area',
+      'img.alt.chongoene.plant': 'Conveyor belts and stockpiles at a mineral processing plant on red earth',
+      'img.alt.beira.dc': 'Aerial view of a large elevated water tank under construction, with workers on scaffolding and a crane',
+      'img.alt.lurio.bridge': 'Aerial view of a new concrete bridge with yellow railings crossing a wide, braided river',
+      'img.alt.incomati.river': 'The wide Incomati River with reed islands and riverside vegetation',
+      'img.alt.namacurra.road': 'A newly paved two-lane road through green bushland',
+      'img.alt.save.bridge': 'Suspension bridge across the wide, sandy bed of the Save River',
+      'img.alt.bazaruto.coast': 'Rocky shoreline, sandy flats and coastal vegetation on Bazaruto Island',
+      'img.alt.n103.road': 'Vehicles on a narrow paved rural road bordered by grass and trees',
+      'img.alt.n14.track': 'Sandy rural track through bushland with a large tree',
+      'img.alt.n380.river': 'Aerial view of a river channel beside a small steel bridge',
+      'img.alt.milange.landscape': 'Aerial view of a rural landscape with farmland and distant mountains',
+      'img.alt.ai.pipeline': 'AI-generated illustration of workers beside a trench with blue water pipes in a small town',
+      'img.alt.ai.tank': 'AI-generated illustration of an elevated water tank on a concrete tower',
+      'img.alt.ai.restoration': 'AI-generated illustration of a regraded, revegetating site beside a gravel road',
+      'img.alt.ai.roadworks': 'AI-generated illustration of a supervisor with a clipboard watching a grader on a red-earth road',
+      'img.alt.ai.sampling': 'AI-generated illustration of gloved hands taking a water sample and a probe reading at a riverbank',
+      'img.alt.ai.audit': 'AI-generated illustration of an inspector with a checklist at a bunded fuel storage tank',
+      'footer.credits':           'Photo Credits',
+      'credits.title':            'Photo Credits',
     },
 
     /* ══════════════════════════════════════════
@@ -615,7 +649,7 @@
       'footer.link.projects':'Projectos',
       'footer.link.blog':    'Perspectivas',
       'footer.link.contact': 'Contacto',
-      'footer.copy':         '© 2025 Enviestudos, Consultoria Ambiental & Serviços, Lda. Todos os direitos reservados.',
+      'footer.copy':         '© {year} Enviestudos, Consultoria Ambiental & Serviços, Lda. Todos os direitos reservados.',
       'footer.privacy':      'Política de Privacidade',
       'footer.terms':        'Termos de Uso',
 
@@ -668,6 +702,10 @@
       'home.svc.training.title':    'Formação e Capacitação',
       'home.svc.training.desc':     'Programas de desenvolvimento profissional sobre regulamentação ambiental, metodologia de EIA e gestão de EHS para entidades governamentais e privadas.',
       'home.svc.learnmore':         'Saber mais',
+      'home.svc.esia.tag':          'EIA',
+      'home.svc.audits.tag':        'Auditorias',
+      'home.svc.supervision.tag':   'Monitorização',
+      'home.svc.rap.tag':           'Social',
 
       'home.about.label':  'Quem Somos',
       'home.about.title':  '18+ Anos ao Serviço do Desenvolvimento de Moçambique',
@@ -1152,16 +1190,48 @@
       'svc.detail.proj-links':   'Projectos Relacionados',
       'svc.detail.more':         'Mais Serviços',
       'svc.detail.all':          'Todos os Serviços',
+
+      /* --- Texto alternativo das imagens --- */
+      'img.alt.home.bridge':      'Vista aérea de uma ponte metálica treliçada numa estrada rural em terra batida, com montanhas ao fundo',
+      'img.alt.esia.hall':        'Reunião de consulta pública numa sala, com um apresentador a dirigir-se aos participantes sentados',
+      'img.alt.rap.meeting':      'Reunião comunitária ao ar livre junto a habitações tradicionais',
+      'img.alt.proj.bridge':      'Vista aérea de uma ponte metálica treliçada sobre um rio, com um veículo a atravessar',
+      'img.alt.proj.road':        'Vista aérea de uma estrada rural que atravessa savana aberta, com montanhas ao fundo',
+      'img.alt.proj.approach':    'Vista aérea de um acesso rodoviário em terra batida que conduz a uma ponte',
+      'img.alt.proj.powerline':   'Vista aérea de uma paisagem rural atravessada por linhas eléctricas aéreas',
+      'img.alt.proj.consultation':'Reunião de consulta comunitária realizada debaixo de uma árvore numa zona rural',
+      'img.alt.chongoene.plant': 'Correias transportadoras e pilhas de minério numa instalação de processamento em terra vermelha',
+      'img.alt.beira.dc': 'Vista aérea de um grande reservatório de água elevado em construção, com trabalhadores em andaimes e uma grua',
+      'img.alt.lurio.bridge': 'Vista aérea de uma nova ponte de betão com guardas amarelas sobre um rio largo e entrançado',
+      'img.alt.incomati.river': 'O largo Rio Incomati, com ilhas de caniço e vegetação ribeirinha',
+      'img.alt.namacurra.road': 'Uma estrada asfaltada de duas faixas que atravessa mato verde',
+      'img.alt.save.bridge': 'Ponte suspensa sobre o leito largo e arenoso do Rio Save',
+      'img.alt.bazaruto.coast': 'Litoral rochoso, bancos de areia e vegetação costeira na Ilha de Bazaruto',
+      'img.alt.n103.road': 'Viaturas numa estrada rural asfaltada estreita, ladeada por capim e árvores',
+      'img.alt.n14.track': 'Picada rural arenosa através de mato, com uma árvore de grande porte',
+      'img.alt.n380.river': 'Vista aérea de um curso de água junto a uma pequena ponte metálica',
+      'img.alt.milange.landscape': 'Vista aérea de uma paisagem rural com terrenos agrícolas e montanhas ao fundo',
+      'img.alt.ai.pipeline': 'Ilustração gerada por IA de trabalhadores junto a uma vala com tubagens de água azuis numa pequena vila',
+      'img.alt.ai.tank': 'Ilustração gerada por IA de um reservatório de água elevado numa torre de betão',
+      'img.alt.ai.restoration': 'Ilustração gerada por IA de um local regularizado e em revegetação junto a uma estrada de terra',
+      'img.alt.ai.roadworks': 'Ilustração gerada por IA de um supervisor com prancheta a observar uma motoniveladora numa estrada de terra vermelha',
+      'img.alt.ai.sampling': 'Ilustração gerada por IA de mãos com luvas a recolher uma amostra de água e a medir com uma sonda na margem de um rio',
+      'img.alt.ai.audit': 'Ilustração gerada por IA de um inspector com lista de verificação junto a um tanque de combustível com bacia de contenção',
+      'footer.credits':           'Créditos Fotográficos',
+      'credits.title':            'Créditos Fotográficos',
     }
   };
 
   /* ─── Core i18n Engine ─── */
   let currentLang = localStorage.getItem('eei_lang') || 'en';
 
+  const CURRENT_YEAR = String(new Date().getFullYear());
+
   function t(key) {
-    return (T[currentLang] && T[currentLang][key]) ||
-           (T['en'] && T['en'][key]) ||
-           key;
+    const str = (T[currentLang] && T[currentLang][key]) ||
+                (T['en'] && T['en'][key]) ||
+                key;
+    return str.replace('{year}', CURRENT_YEAR);
   }
 
   function applyTranslations() {
@@ -1182,6 +1252,10 @@
     /* aria-label */
     document.querySelectorAll('[data-i18n-aria]').forEach(el => {
       el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria')));
+    });
+    /* image alt text */
+    document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+      el.setAttribute('alt', t(el.getAttribute('data-i18n-alt')));
     });
     /* html lang attribute */
     document.documentElement.setAttribute('lang', currentLang === 'pt' ? 'pt' : 'en');

@@ -2193,6 +2193,71 @@ footer {
   .proj-hero-meta { gap: 1rem 1.5rem; }
 }
 
+/* ─── Photography ─── */
+/* In-content figure (service + project detail pages) */
+.media-figure { margin: 2rem 0 0.5rem; }
+.media-figure img {
+  display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover;
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-md); background: var(--clr-accent-bg);
+}
+.media-figure figcaption {
+  margin-top: 0.7rem; padding-left: 0.75rem; border-left: 2px solid var(--clr-secondary);
+  font-size: 0.8rem; line-height: 1.5; color: var(--clr-text-muted);
+}
+
+/* Small "illustrative image" label over photos */
+.photo-label {
+  position: absolute; top: 0.85rem; right: 0.85rem; z-index: 2;
+  font-family: var(--font-heading); font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--clr-white);
+  background: rgba(13, 74, 48, 0.78); border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 50px; padding: 0.25rem 0.65rem; pointer-events: none;
+}
+.photo-label--left { right: auto; left: 0.85rem; }
+
+/* Project card header with photo: gradient stays underneath, ring becomes a legibility shade */
+.project-card-header .card-photo {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.project-card:hover .project-card-header .card-photo { transform: scale(1.04); }
+.project-card-header.has-photo::after {
+  inset: 0; width: auto; height: auto; border: 0; border-radius: 0;
+  background: linear-gradient(to top, rgba(4,28,18,0.9) 0%, rgba(4,28,18,0.5) 55%, rgba(4,28,18,0.15) 100%);
+}
+
+/* Figure label positioning + small-source images shown at native size (no upscaling) */
+.media-figure { position: relative; }
+.media-figure--native { max-width: 540px; }
+.media-figure figcaption a { color: var(--clr-primary); text-decoration: underline; text-underline-offset: 2px; }
+.photo-label--ai { background: rgba(15, 40, 32, 0.85); }
+
+/* Homepage featured project cards: label visible on the expanded card (always on mobile) */
+.proj-card .photo-label { z-index: 3; opacity: 0; transition: opacity 0.3s ease; }
+.proj-card.active .photo-label { opacity: 1; }
+@media (max-width: 767px) { .proj-card .photo-label { opacity: 1; } }
+
+/* Photo credits register */
+.credits-list { display: grid; gap: 1.25rem; margin-top: 2rem; }
+.credit-item {
+  display: grid; grid-template-columns: 1fr; gap: 1rem;
+  border: 1px solid var(--clr-border); border-radius: var(--radius-lg);
+  padding: 1.25rem; background: var(--clr-white);
+}
+@media (min-width: 768px) { .credit-item { grid-template-columns: 200px 1fr; gap: 1.5rem; padding: 1.5rem; } }
+.credit-item img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius); }
+.credit-item h3 { font-size: 1rem; color: var(--clr-primary-dark); margin: 0 0 0.6rem; overflow-wrap: anywhere; }
+.credit-item dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1rem; margin: 0; font-size: 0.86rem; }
+.credit-item dt { font-weight: 600; color: var(--clr-text-dark); }
+.credit-item dd { margin: 0; color: var(--clr-text-muted); overflow-wrap: anywhere; }
+.credit-item a { color: var(--clr-primary); text-decoration: underline; }
+@media (max-width: 479px) { .credit-item dl { grid-template-columns: 1fr; } .credit-item dd { margin-bottom: 0.4rem; } }
+
+/* Homepage "Who We Are" photo panel */
+.about-main-card .about-photo {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+
 /* ─── Language-Block Visibility Toggles ─── */
 /* Usage: wrap bilingual content in <div class="lang-en"> / <div class="lang-pt"> */
 .lang-pt { display: none; }
