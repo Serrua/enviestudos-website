@@ -41,7 +41,7 @@
       'footer.link.projects':'Projects',
       'footer.link.blog':    'Insights',
       'footer.link.contact': 'Contact',
-      'footer.copy':         '© 2025 Enviestudos, Consultoria Ambiental & Serviços, Lda. All rights reserved.',
+      'footer.copy':         '© {year} Enviestudos, Consultoria Ambiental & Serviços, Lda. All rights reserved.',
       'footer.privacy':      'Privacy Policy',
       'footer.terms':        'Terms of Use',
 
@@ -97,6 +97,10 @@
       'home.svc.training.title':   'Training & Capacity Building',
       'home.svc.training.desc':    'Professional development programs on environmental regulations, ESIA methodology, and EHS management for government and private sector teams.',
       'home.svc.learnmore':        'Learn more',
+      'home.svc.esia.tag':         'ESIA',
+      'home.svc.audits.tag':       'Audits',
+      'home.svc.supervision.tag':  'Monitoring',
+      'home.svc.rap.tag':          'Social',
 
       'home.about.label':   'Who We Are',
       'home.about.title':   "18+ Years Serving Mozambique's Development",
@@ -615,7 +619,7 @@
       'footer.link.projects':'Projectos',
       'footer.link.blog':    'Perspectivas',
       'footer.link.contact': 'Contacto',
-      'footer.copy':         '© 2025 Enviestudos, Consultoria Ambiental & Serviços, Lda. Todos os direitos reservados.',
+      'footer.copy':         '© {year} Enviestudos, Consultoria Ambiental & Serviços, Lda. Todos os direitos reservados.',
       'footer.privacy':      'Política de Privacidade',
       'footer.terms':        'Termos de Uso',
 
@@ -668,6 +672,10 @@
       'home.svc.training.title':    'Formação e Capacitação',
       'home.svc.training.desc':     'Programas de desenvolvimento profissional sobre regulamentação ambiental, metodologia de EIA e gestão de EHS para entidades governamentais e privadas.',
       'home.svc.learnmore':         'Saber mais',
+      'home.svc.esia.tag':          'EIA',
+      'home.svc.audits.tag':        'Auditorias',
+      'home.svc.supervision.tag':   'Monitorização',
+      'home.svc.rap.tag':           'Social',
 
       'home.about.label':  'Quem Somos',
       'home.about.title':  '18+ Anos ao Serviço do Desenvolvimento de Moçambique',
@@ -1158,10 +1166,13 @@
   /* ─── Core i18n Engine ─── */
   let currentLang = localStorage.getItem('eei_lang') || 'en';
 
+  const CURRENT_YEAR = String(new Date().getFullYear());
+
   function t(key) {
-    return (T[currentLang] && T[currentLang][key]) ||
-           (T['en'] && T['en'][key]) ||
-           key;
+    const str = (T[currentLang] && T[currentLang][key]) ||
+                (T['en'] && T['en'][key]) ||
+                key;
+    return str.replace('{year}', CURRENT_YEAR);
   }
 
   function applyTranslations() {
