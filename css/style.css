@@ -2193,6 +2193,44 @@ footer {
   .proj-hero-meta { gap: 1rem 1.5rem; }
 }
 
+/* ─── Photography ─── */
+/* In-content figure (service + project detail pages) */
+.media-figure { margin: 2rem 0 0.5rem; }
+.media-figure img {
+  display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover;
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-md); background: var(--clr-accent-bg);
+}
+.media-figure figcaption {
+  margin-top: 0.7rem; padding-left: 0.75rem; border-left: 2px solid var(--clr-secondary);
+  font-size: 0.8rem; line-height: 1.5; color: var(--clr-text-muted);
+}
+
+/* Small "illustrative image" label over photos */
+.photo-label {
+  position: absolute; top: 0.85rem; right: 0.85rem; z-index: 2;
+  font-family: var(--font-heading); font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--clr-white);
+  background: rgba(13, 74, 48, 0.78); border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 50px; padding: 0.25rem 0.65rem; pointer-events: none;
+}
+.photo-label--left { right: auto; left: 0.85rem; }
+
+/* Project card header with photo: gradient stays underneath, ring becomes a legibility shade */
+.project-card-header .card-photo {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.project-card:hover .project-card-header .card-photo { transform: scale(1.04); }
+.project-card-header.has-photo::after {
+  inset: 0; width: auto; height: auto; border: 0; border-radius: 0;
+  background: linear-gradient(to top, rgba(4,28,18,0.9) 0%, rgba(4,28,18,0.5) 55%, rgba(4,28,18,0.15) 100%);
+}
+
+/* Homepage "Who We Are" photo panel */
+.about-main-card .about-photo {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+
 /* ─── Language-Block Visibility Toggles ─── */
 /* Usage: wrap bilingual content in <div class="lang-en"> / <div class="lang-pt"> */
 .lang-pt { display: none; }

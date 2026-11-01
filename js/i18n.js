@@ -5,6 +5,7 @@
      data-i18n-html="key"  → sets element.innerHTML (for bold/span inside)
      data-i18n-ph="key"    → sets input/textarea placeholder
      data-i18n-aria="key"  → sets aria-label
+     data-i18n-alt="key"   → sets image alt text
    ============================================================ */
 
 (function () {
@@ -585,6 +586,18 @@
       'svc.detail.proj-links':   'Related Projects',
       'svc.detail.more':         'More Services',
       'svc.detail.all':          'All Services',
+
+      /* --- Image alt text --- */
+      'img.alt.home.bridge':      'Aerial view of a steel truss bridge on an unpaved rural road, with mountains in the distance',
+      'img.alt.esia.hall':        'Public consultation meeting in a hall, with a presenter addressing seated participants',
+      'img.alt.rap.meeting':      'Outdoor community meeting held beside traditional houses',
+      'img.alt.monitoring.bridge':'Aerial view of a single-span steel bridge over a river, with road approaches and surrounding vegetation',
+      'img.alt.audit.meeting':    'Outdoor field meeting beside a road, with participants seated around a table',
+      'img.alt.proj.bridge':      'Aerial view of a steel truss bridge over a river, with a vehicle crossing',
+      'img.alt.proj.road':        'Aerial view of a rural road crossing open savanna, with mountains in the distance',
+      'img.alt.proj.approach':    'Aerial view of an unpaved road approach leading to a bridge',
+      'img.alt.proj.powerline':   'Aerial view of a rural landscape crossed by overhead power lines',
+      'img.alt.proj.consultation':'Community consultation meeting held under a tree in a rural area',
     },
 
     /* ══════════════════════════════════════════
@@ -1160,6 +1173,18 @@
       'svc.detail.proj-links':   'Projectos Relacionados',
       'svc.detail.more':         'Mais Serviços',
       'svc.detail.all':          'Todos os Serviços',
+
+      /* --- Texto alternativo das imagens --- */
+      'img.alt.home.bridge':      'Vista aérea de uma ponte metálica treliçada numa estrada rural em terra batida, com montanhas ao fundo',
+      'img.alt.esia.hall':        'Reunião de consulta pública numa sala, com um apresentador a dirigir-se aos participantes sentados',
+      'img.alt.rap.meeting':      'Reunião comunitária ao ar livre junto a habitações tradicionais',
+      'img.alt.monitoring.bridge':'Vista aérea de uma ponte metálica de vão único sobre um rio, com os acessos rodoviários e a vegetação envolvente',
+      'img.alt.audit.meeting':    'Reunião de campo ao ar livre junto a uma estrada, com participantes sentados à volta de uma mesa',
+      'img.alt.proj.bridge':      'Vista aérea de uma ponte metálica treliçada sobre um rio, com um veículo a atravessar',
+      'img.alt.proj.road':        'Vista aérea de uma estrada rural que atravessa savana aberta, com montanhas ao fundo',
+      'img.alt.proj.approach':    'Vista aérea de um acesso rodoviário em terra batida que conduz a uma ponte',
+      'img.alt.proj.powerline':   'Vista aérea de uma paisagem rural atravessada por linhas eléctricas aéreas',
+      'img.alt.proj.consultation':'Reunião de consulta comunitária realizada debaixo de uma árvore numa zona rural',
     }
   };
 
@@ -1193,6 +1218,10 @@
     /* aria-label */
     document.querySelectorAll('[data-i18n-aria]').forEach(el => {
       el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria')));
+    });
+    /* image alt text */
+    document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+      el.setAttribute('alt', t(el.getAttribute('data-i18n-alt')));
     });
     /* html lang attribute */
     document.documentElement.setAttribute('lang', currentLang === 'pt' ? 'pt' : 'en');

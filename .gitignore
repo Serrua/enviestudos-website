@@ -7,3 +7,7 @@
 
 # Office documents — not web assets
 Company Profile/
+
+# Original photography and source assets — keep out of deployment
+/images/bridge/
+/images/consultancy/
