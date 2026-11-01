@@ -11,3 +11,7 @@ Company Profile/
 # Original photography and source assets — keep out of deployment
 /images/bridge/
 /images/consultancy/
+
+# Research notes, permission drafts, pending-permission images and AI source files — not website assets
+/research/
+/images/ai-illustrations/
