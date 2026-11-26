@@ -46,6 +46,7 @@
       'footer.privacy':      'Privacy Policy',
       'footer.terms':        'Terms of Use',
       'footer.gd.title':     'General Director',
+      'about.cert.emblem.alt': 'Emblem of the Republic of Mozambique',
 
       /* ── Common: CTA ── */
       'cta.label': 'Get Started Today',
@@ -109,7 +110,7 @@
       'home.about.desc':    'Founded in June 2011, Enviestudos, Lda. (EEL) brings together multidisciplinary professionals with deep knowledge of Mozambique\'s environmental, social, and regulatory landscape.',
       'home.about.feat1':   '<strong>International standard compliance</strong> — all studies align with WB, AfDB, JICA, EU safeguard policies.',
       'home.about.feat2':   '<strong>National reach</strong> — projects executed in all 10 provinces of Mozambique.',
-      'home.about.feat3':   '<strong>Multidisciplinary expertise</strong> — environmental, social and technical specialists with experience across ESIA, audits, supervision and resettlement.',
+      'home.about.feat3':   '<strong>Certified expertise</strong> — our Technical Director is certified by the Ministry of Agriculture, Environment and Fisheries (MAAP) as an Environmental Consultant and Environmental Auditor.',
       'home.about.feat4':   '<strong>Pragmatic approach</strong> — solutions that are technically sound, locally relevant, and implementable.',
       'home.about.cta':     'Learn More About Us',
       'home.about.badge.strong': '18+ Years',
@@ -439,9 +440,9 @@
       'about.val.integrity.desc':  'We uphold the highest standards of professional ethics, scientific rigour, and transparent communication with all stakeholders.',
       'about.val.sust.title':  'Sustainability',
       'about.val.sust.desc':   'Every recommendation we make is guided by long-term environmental sustainability and the wellbeing of Mozambican communities.',
-      'about.certs.label': 'Standards',
-      'about.certs.title': 'International Standards',
-      'about.certs.desc':  'Our studies are prepared in line with Mozambican environmental law and the safeguard frameworks of the international institutions that finance development projects.',
+      'about.certs.label': 'Credentials',
+      'about.certs.title': 'Credentials & Standards',
+      'about.certs.desc':  'Our Technical Director holds environmental certifications issued by Mozambique’s Ministry of Agriculture, Environment and Fisheries (MAAP), and our studies follow Mozambican environmental law and the safeguard frameworks of the international institutions that finance development projects.',
 
       /* ─── Alias keys for services.html sectors ─── */
       'svc.sect.roads.title':  'Roads & Bridges',
@@ -640,6 +641,7 @@
       'footer.privacy':      'Política de Privacidade',
       'footer.terms':        'Termos de Uso',
       'footer.gd.title':     'Director Geral',
+      'about.cert.emblem.alt': 'Emblema da República de Moçambique',
 
       /* ── Common: CTA ── */
       'cta.label': 'Comece Hoje',
@@ -700,7 +702,7 @@
       'home.about.desc':   'Fundada em Junho de 2011, a Enviestudos, Lda. (EEL) reúne profissionais multidisciplinares com profundo conhecimento do panorama ambiental, social e regulatório de Moçambique.',
       'home.about.feat1':  '<strong>Conformidade com normas internacionais</strong> — todos os estudos alinhados com as políticas de salvaguarda do BM, BAfD, JICA e UE.',
       'home.about.feat2':  '<strong>Alcance nacional</strong> — projectos executados em todas as 10 províncias de Moçambique.',
-      'home.about.feat3':  '<strong>Competência multidisciplinar</strong> — especialistas ambientais, sociais e técnicos com experiência em EIA, auditorias, supervisão e reassentamento.',
+      'home.about.feat3':  '<strong>Competência certificada</strong> — o nosso Director Técnico é Consultor Ambiental e Auditor Ambiental certificado pelo Ministério da Agricultura, Ambiente e Pescas (MAAP).',
       'home.about.feat4':  '<strong>Abordagem pragmática</strong> — soluções tecnicamente sólidas, localmente relevantes e implementáveis.',
       'home.about.cta':    'Conhecer a Nossa Empresa',
       'home.about.badge.strong': '18+ Anos',
@@ -1030,9 +1032,9 @@
       'about.val.integrity.desc':  'Defendemos os mais elevados padrões de ética profissional, rigor científico e comunicação transparente com todas as partes interessadas.',
       'about.val.sust.title':  'Sustentabilidade',
       'about.val.sust.desc':   'Cada recomendação que fazemos é guiada pela sustentabilidade ambiental a longo prazo e pelo bem-estar das comunidades moçambicanas.',
-      'about.certs.label': 'Referências',
-      'about.certs.title': 'Normas Internacionais',
-      'about.certs.desc':  'Os nossos estudos são elaborados em conformidade com a legislação ambiental moçambicana e com os quadros de salvaguardas das instituições internacionais que financiam projectos de desenvolvimento.',
+      'about.certs.label': 'Credenciais',
+      'about.certs.title': 'Credenciais e Normas',
+      'about.certs.desc':  'O nosso Director Técnico possui certificações ambientais emitidas pelo Ministério da Agricultura, Ambiente e Pescas (MAAP) de Moçambique, e os nossos estudos seguem a legislação ambiental moçambicana e os quadros de salvaguardas das instituições internacionais que financiam projectos de desenvolvimento.',
 
       /* ─── Alias keys for services.html sectors ─── */
       'svc.sect.roads.title':  'Estradas e Pontes',
