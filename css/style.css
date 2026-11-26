@@ -2066,6 +2066,27 @@ footer {
   .cta-actions  { flex-direction: column; align-items: center; }
 }
 
+/* Homepage hero on phones: compact, content-sized instead of a full-screen block */
+@media (max-width: 639px) {
+  .hero { min-height: 0; }
+  .hero-bg { background-position: 60% 35%; }
+  .hero-content { padding: 2rem 0 2.5rem; }
+  .hero-label { font-size: 0.62rem; letter-spacing: 0.12em; margin-bottom: 1rem; padding: 0.3rem 0.8rem 0.3rem 0.6rem; text-wrap: balance; }
+  .hero h1 { font-size: clamp(1.7rem, 7.6vw, 2rem); line-height: 1.15; margin-bottom: 0.9rem; }
+  .hero-desc { font-size: 0.98rem; line-height: 1.6; margin-bottom: 1.5rem; }
+  .hero-actions { gap: 0.75rem; margin-bottom: 0; }
+  .hero-actions .btn { padding-top: 0.8rem; padding-bottom: 0.8rem; }
+}
+
+/* Footer: General Director contact */
+.footer-director-name { color: rgba(255,255,255,0.85); font-weight: 600; }
+.footer-director-phones { display: grid; gap: 0.2rem; margin-top: 0.3rem; }
+.footer-director-phones a { color: rgba(255,255,255,0.7); text-decoration: none; }
+.footer-director-phones a:hover, .footer-director-phones a:focus-visible { color: var(--clr-white); text-decoration: underline; }
+.footer-director-phones .footer-wa {
+  margin-left: 0.5rem; font-size: 0.72rem; font-weight: 700; color: var(--clr-secondary);
+}
+
 /* ─── Service / Project Detail Pages ─── */
 
 .detail-layout {
@@ -2257,6 +2278,75 @@ footer {
 .about-main-card .about-photo {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
 }
+
+/* ─── Leadership: directors' presentations (About) ─── */
+.leadership-section { background: var(--clr-white); }
+.leadership-head { max-width: 640px; }
+.director-list { display: grid; gap: 3.5rem; margin-top: 3rem; }
+.director {
+  display: grid; grid-template-columns: 1fr; gap: 2rem;
+  padding-top: 3rem; border-top: 1px solid var(--clr-border);
+}
+.director:first-child { padding-top: 0; border-top: 0; }
+@media (min-width: 900px) {
+  .director { grid-template-columns: 300px minmax(0, 1fr); gap: 4rem; align-items: start; }
+  .director-aside { position: sticky; top: calc(var(--nav-h) + 1.5rem); }
+}
+.director-portrait {
+  aspect-ratio: 4 / 5; width: 100%; max-width: 300px; margin: 0 auto 1.25rem;
+  border-radius: var(--radius-lg); overflow: hidden; background: var(--clr-accent-bg);
+  box-shadow: var(--shadow-md);
+}
+@media (min-width: 900px) { .director-portrait { margin: 0 0 1.25rem; } }
+.director-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; display: block; }
+.director-aside { text-align: center; }
+@media (min-width: 900px) { .director-aside { text-align: left; } }
+.director-aside h3 { font-size: 1.35rem; margin: 0; color: var(--clr-primary-dark); line-height: 1.25; }
+.leader-role {
+  font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--clr-secondary); margin: 0 0 0.3rem;
+}
+.leader-org { font-size: 0.85rem; font-weight: 600; color: var(--clr-text-muted); margin: 0.2rem 0 0; }
+.director-letter { max-width: 68ch; }
+.director-eyebrow {
+  font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--clr-primary); margin: 0 0 1.25rem;
+  padding-left: 0.9rem; border-left: 3px solid var(--clr-secondary);
+}
+.director-text p { font-size: 1.02rem; line-height: 1.85; color: var(--clr-text-body); margin: 0 0 1.15rem; }
+.director-text .director-salutation { font-weight: 600; color: var(--clr-primary-dark); }
+.director-text .director-closing { margin-top: 1.75rem; color: var(--clr-text-dark); font-style: italic; }
+.director-signoff { margin-top: 0.75rem; padding-top: 1.25rem; border-top: 1px solid var(--clr-border); }
+.director-signature { display: block; width: auto; height: auto; max-width: min(260px, 70%); margin: 0 0 0.6rem; }
+.signoff-name { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: var(--clr-primary-dark); margin: 0; }
+.signoff-title { font-size: 0.88rem; color: var(--clr-primary); font-weight: 600; margin: 0.1rem 0 0; }
+.signoff-org { font-size: 0.82rem; color: var(--clr-text-muted); margin: 0.1rem 0 0; }
+.leader-contact { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--clr-border); text-align: left; }
+.leader-contact-label {
+  font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--clr-text-muted); margin: 0 0 0.5rem;
+}
+@media (max-width: 899px) { .leader-contact { max-width: 300px; margin-left: auto; margin-right: auto; } }
+
+/* Direct phone rows (leadership card + contact page) */
+.direct-phone { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.75rem; margin: 0.3rem 0; }
+.direct-phone a[href^="tel:"] { font-weight: 600; color: var(--clr-primary-dark); text-decoration: none; }
+.direct-phone a[href^="tel:"]:hover, .direct-phone a[href^="tel:"]:focus-visible { color: var(--clr-primary); text-decoration: underline; }
+.direct-wa {
+  display: inline-flex; align-items: center; min-height: 32px; padding: 0.2rem 0.7rem;
+  font-size: 0.74rem; font-weight: 700; color: var(--clr-primary-dark);
+  background: var(--clr-accent-bg); border: 1px solid var(--clr-border); border-radius: 50px; text-decoration: none;
+}
+.direct-wa:hover, .direct-wa:focus-visible { background: var(--clr-secondary-pale); border-color: var(--clr-secondary); }
+html[lang="pt"] .contact-item-value > span.lang-pt { display: inline; }
+.contact-gm-note { margin: 0.6rem 0 0; font-size: 0.85rem; color: var(--clr-text-muted); line-height: 1.6; }
+
+/* Contact form submit: allow wrapping so the button never forces the page wider than a phone screen */
+@media (max-width: 479px) { .form-submit { white-space: normal; text-align: center; } }
+.contact-grid > * { min-width: 0; }
+
+/* International standards card (About) */
+.standards-single { max-width: 440px; margin: 2.5rem auto 0; }
 
 /* ─── Language-Block Visibility Toggles ─── */
 /* Usage: wrap bilingual content in <div class="lang-en"> / <div class="lang-pt"> */
